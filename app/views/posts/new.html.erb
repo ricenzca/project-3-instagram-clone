@@ -1,23 +1,13 @@
 <%= cloudinary_js_config %>
 
+
+
 <h1> new post </h1>
 
 <%= form_with scope: :post, url: posts_path, local: true do |form| %>
-  <p>
-    <%= form.label :ImagePath %><br>
-    <%= form.text_field :ImagePath %>
-  </p>
 
+  <%= cl_image_upload_tag(:image_id) %>
 
-
-  <p>
-    <%= form.label :type %><br>
-    <%= form.text_area :type %>
-  </p>
-
-  <p>
-    <%= form.submit %>
-  </p>
 <% end %>
 
 <!-- Cloudinary::Uploader.upload('my_image.jpg')

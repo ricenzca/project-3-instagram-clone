@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
 
 	  def index
-	    @farms = Farm.all
+	    # @farms = Farm.all
 	  end
 
 	  def new
+      @posts = post.new
 	  end
 
 	  def create

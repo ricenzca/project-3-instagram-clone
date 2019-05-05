@@ -2,13 +2,18 @@
 
 
 
+
 <h1> new post </h1>
 
-<%= form_with scope: :post, url: posts_path, local: true do |form| %>
+<%= form_tag('/posts', :method => :post) do  %>
 
-  <%= cl_image_upload_tag(:image_id) %>
+  <%= cl_upload_tag(:image_id) %>
 
 <% end %>
+
+
+
+
 
 <!-- Cloudinary::Uploader.upload('my_image.jpg')
 
@@ -37,3 +42,19 @@ Cloudinary::Uploader.upload_large("dog.mp4", :resource_type => :video,
   "url" => "https://res.cloudinary.com/demo/image/upload/v1371750447/pjxlnrigoijmmeibdi0u.jpg",
   "secure_url"=> "https://res.cloudinary.com/demo/image/upload/v1371750447/pjxlnrigoijmmeibdi0u.jpg"
 } -->
+
+<!-- $(function() {
+  if($.fn.cloudinary_fileupload !== undefined) {
+    $("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();
+  }
+}); -->
+
+<!-- $('.cloudinary-fileupload').bind('cloudinarydone', function(e, data) {
+  $('.preview').html(
+    $.cloudinary.image(data.result.public_id,
+      { format: data.result.format, version: data.result.version,
+        crop: 'fill', width: 150, height: 100 })
+  );
+  $('.image_public_id').val(data.result.public_id);
+  return true;
+}); -->

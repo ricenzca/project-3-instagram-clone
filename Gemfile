@@ -51,6 +51,7 @@ group :development do
 end
 
 gem 'cloudinary'
+gem 'jquery-rails'
 
 group :test do
   # Adds support for Capybara system testing and selenium driver

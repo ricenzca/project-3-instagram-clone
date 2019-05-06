@@ -8,7 +8,7 @@
 
 require 'faker'
 
-10.times do
+50.times do
     password = Faker::Internet.password(8,20)
     User.create(
         email: Faker::Internet.email,
@@ -18,8 +18,10 @@ require 'faker'
     puts "user created"
 end
 
-# User.create 10 do |user|
-#   user.email = Faker::Internet.email,
-#   user.encrypted_password = User.new(:password => password).encrypted_password
-#   # rest of your code here
-# end
+# Following relationships
+users = User.all
+user  = users.first
+following = users[2..50]
+followers = users[3..40]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }

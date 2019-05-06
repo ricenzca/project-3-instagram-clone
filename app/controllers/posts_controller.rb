@@ -9,11 +9,10 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.find(params[:id])
+    # @user = User.find(params[:id])
+    puts "in posts#new method"
+
   end
-
-
-
 
   def storeNew
     # Cloudinary::Uploader.upload('')
@@ -29,12 +28,6 @@ class PostsController < ApplicationController
       # @model.image_id = preloaded.identifier
     end
   end
-
-  def new
-    puts "hello banana222"
-  end
-
-
 
   # private
   #   def article_params

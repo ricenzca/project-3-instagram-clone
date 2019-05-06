@@ -2,8 +2,14 @@ Rails.application.routes.draw do
   devise_for :users
 
   root 'posts#index'
+    get '/posts/show/:id' => 'posts#show' , as: 'post'
+    get '/posts/new' => 'posts#new', as: 'newPost'
+    post '/posts/new' => 'posts#storeNew'
 
-    # get '/posts/new' => 'posts#new', as: 'new_post'
+
+
+
+
   resources :users do
     member do
       get :following, :followers

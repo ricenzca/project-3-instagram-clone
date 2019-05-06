@@ -1,7 +1,9 @@
-<h1>Hello World</h1>
+<h1>Instafeed home page</h1>
 
 <% if user_signed_in? %>
 <%= link_to 'log out', destroy_user_session_url, method: :delete %>
+
+
   <div class="row">
     <aside class="col-md-4">
       <section class="user_info">
@@ -11,11 +13,17 @@
         <%= render 'shared/stats' %>
       </section>
     </aside>
-    <div class="col-md-8">
+    <div class="col-md-8"><br/>
+
+		<a href="<%= newPost_path %>">New Post</a>
+
       <h3>Post Feed</h3>
-      <%= render 'shared/feed' %>
+      <%= render 'posts/indexfeed' %>
     </div>
   </div>
+
+
+
 <% else %>
 <%= link_to 'log in', new_user_session_url %>
 <% end %>

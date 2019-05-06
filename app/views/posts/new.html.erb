@@ -1,1 +1,60 @@
-<h1> in new </h1>
+<%= cloudinary_js_config %>
+
+
+
+
+<h1> new post </h1>
+
+<%= form_tag('/posts', :method => :post) do  %>
+
+  <%= cl_upload_tag(:image_id) %>
+
+<% end %>
+
+
+
+
+
+<!-- Cloudinary::Uploader.upload('my_image.jpg')
+
+Cloudinary::Uploader.upload_large("dog.mp4", :resource_type => :video,
+    :public_id => "my_folder/my_sub_folder/dog_closeup",
+    :chunk_size => 6_000_000
+    :eager => [
+      {:width => 300, :height => 300, :crop => :pad, :audio_codec => :none},
+      {:width => 160, :height => 100, :crop => :crop, :gravity => :south, :audio_codec => :none }],
+    :eager_async => true,
+    :eager_notification_url => "https://mysite.example.com/notify_endpoint")
+)
+
+ upload response
+{
+  "public_id" => "pjxlnrigoijmmeibdi0u",
+  "version" => 1371750447,
+  "signature" => "bfec72b23487654e964febf8b89fe5f4ce796c8c",
+  "width" => 864,
+  "height" => 576,
+  "format" => "jpg",
+  "resource_type" => "image",
+  "created_at" => "2017-06-20T17:47:27Z",
+  "bytes" => 120253,
+  "type" => "upload",
+  "url" => "https://res.cloudinary.com/demo/image/upload/v1371750447/pjxlnrigoijmmeibdi0u.jpg",
+  "secure_url"=> "https://res.cloudinary.com/demo/image/upload/v1371750447/pjxlnrigoijmmeibdi0u.jpg"
+} -->
+
+<!-- $(function() {
+  if($.fn.cloudinary_fileupload !== undefined) {
+    $("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();
+  }
+}); -->
+
+<!-- $('.cloudinary-fileupload').bind('cloudinarydone', function(e, data) {
+  $('.preview').html(
+    $.cloudinary.image(data.result.public_id,
+      { format: data.result.format, version: data.result.version,
+        crop: 'fill', width: 150, height: 100 })
+  );
+  $('.image_public_id').val(data.result.public_id);
+  return true;
+}); -->

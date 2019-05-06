@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :friend
   has_many :post
-  has_many :like
+  has_many :likes, dependent: :destroy
   has_many :active_relationships, class_name:  "Relationship",
                                   foreign_key: "follower_id",
                                   dependent:   :destroy

@@ -13,3 +13,31 @@
  *= require_tree .
  *= require_self
  */
+
+.heart:active {
+	animation: exit .2s 0s ease-in-out 1 normal;
+}
+
+.heart {
+	animation: entrance .2s 0s ease-in-out 1 normal;
+}
+
+@keyframes exit {
+    0% {
+        transform: scale(1.0);
+    }
+    100% {
+        transform: scale(.9);
+        opacity:.8;
+    }
+}
+
+@keyframes entrance {
+    0% {
+        transform: scale(.9);
+        opacity:.8;
+    }
+    100% {
+        transform: scale(1.0);
+    }
+}

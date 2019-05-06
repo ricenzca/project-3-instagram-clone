@@ -12,8 +12,8 @@ require 'faker'
     password = Faker::Internet.password(8,20)
     User.create(
         email: Faker::Internet.email,
-        password: password,
-        password_confirmation: password
+        password: '1234567',
+        password_confirmation: '1234567'
     )
     puts "user created"
 end

@@ -10,13 +10,13 @@
 <% if pre_like %>
 	<%= form_with url: post_like_path(@post, pre_like), method: :delete, local: true do |form| %>
 		<button style="border: none; background: none" type="submit" value="submit">
-			<%= image_tag("heart.png", size: "25", alt:"unlike icon", class: "heart") %>
+			<%= image_tag("after-like.png", size: "25", alt:"unlike icon", class: "heart") %>
 		</button>
 	<% end %>
 <% else %>
 	<%= form_with url: post_likes_path(@post), local: true do |form| %>
 		<button style="border: none; background: none" type="submit" value="submit">
-			<%= image_tag("like.png", size: "25", alt: "like icon", class: "heart") %>
+			<%= image_tag("before-like.png", size: "25", alt: "like icon", class: "heart") %>
 		</button>
 	<% end %>
 <% end %>

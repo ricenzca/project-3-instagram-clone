@@ -5,14 +5,14 @@
 
 <h1> new post </h1>
 
-<%= form_tag('/posts', :method => :post) do  %>
 
-  <%= cl_upload_tag(:image_id) %>
 
+<%= form_with scope: :posts, local: true do |form| %>
+    <%= form.label :file %>
+    <%= form.text_area :file %>
 <% end %>
 
-
-
+<% puts params[:image_id]%>
 
 
 <!-- Cloudinary::Uploader.upload('my_image.jpg')
@@ -58,3 +58,6 @@ Cloudinary::Uploader.upload_large("dog.mp4", :resource_type => :video,
   $('.image_public_id').val(data.result.public_id);
   return true;
 }); -->
+
+<!--   <%= cl_upload_tag(:image_id) %> -->
+<!-- <%= form_tag('/posts', :method => :post) do  %> -->

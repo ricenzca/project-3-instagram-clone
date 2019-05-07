@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :posts, :friends, :likes
+  resources :users, :posts, :friends, :likes
   resources :relationships,       only: [:create, :destroy]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -14,42 +14,23 @@
  *= require_self
  */
  @import "font-awesome";
+ @import "users";
+ @import "posts";
+ @import "bootstrap";
 
-
-.heart:active {
-	animation: exit .2s 0s ease-in-out 1 normal;
-}
-
-.heart {
-	animation: entrance .1s 0s ease-in-out 1 normal;
-}
-
-@keyframes exit {
-    0% {
-        transform: scale(1.0);
-    }
-    100% {
-        transform: scale(.9);
-        opacity:.8;
-    }
-}
-
-@keyframes entrance {
-    0% {
-        transform: scale(.9);
-        opacity:.8;
-    }
-    100% {
-        transform: scale(1.0);
-    }
-}
-
-.container{
+ .container{
   max-width: 1000px;
 }
 .navbar{
   border-bottom: 1px solid rgba(0,0,0,.0975);
 }
+
+.insta-title {
+	font-family: "Billabong";
+	font-size: 1.8rem;
+	padding-left: 8px;
+}
+
 .user-section{
   a{
     padding-left: 15px;
@@ -79,4 +60,32 @@
   p{
     color: #999;
   }
+}
+
+.heart:active {
+	animation: exit .2s 0s ease-in-out 1 normal;
+}
+
+.heart {
+	animation: entrance .1s 0s ease-in-out 1 normal;
+}
+
+@keyframes exit {
+    0% {
+        transform: scale(1.0);
+    }
+    100% {
+        transform: scale(.9);
+        opacity:.8;
+    }
+}
+
+@keyframes entrance {
+    0% {
+        transform: scale(.9);
+        opacity:.8;
+    }
+    100% {
+        transform: scale(1.0);
+    }
 }

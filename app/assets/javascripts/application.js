@@ -15,6 +15,5 @@
 
 //= require rails-ujs
 //= require activestorage
-//= require jquery_ujs
 //= require cloudinary
 //= require_tree .

@@ -2,9 +2,16 @@
 
 <h1> New post </h1>
 
+<div id="direct_upload">
+
 <%= form_for Post.new do |f| %>
 
 	<%= cl_upload_tag(:media_id) %>
+
+	<br><br>
+
+
+	<span class="status"></span>
 
 	<div class="form-group">
 		<%= f.text_field :user_id, value: current_user.id, class:'d-none'%>
@@ -17,3 +24,5 @@
 	</div>
 
 <% end %>
+
+</div>

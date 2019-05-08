@@ -1,10 +1,10 @@
 <%= cloudinary_js_config %>
 
-<h1> new post </h1>
+<h1> New post </h1>
 
 <%= form_for Post.new do |f| %>
 
-	<%= cl_upload_tag(:image_id) %>
+	<%= cl_upload_tag(:media_id) %>
 
 	<div class="form-group">
 		<%= f.text_field :user_id, value: current_user.id, class:'d-none'%>
@@ -16,8 +16,4 @@
 		<%= f.submit 'Create Post', class: 'btn btn-primary' %>
 	</div>
 
-<% end %>
-
-<% if false %>
-    <%= f.text_field :image_id, value: :image_id, class:'d-none'%>
 <% end %>

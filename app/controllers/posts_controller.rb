@@ -9,7 +9,6 @@ class PostsController < ApplicationController
     # else
       @posts = Post.all
     # end
-
   end
 
   def show
@@ -21,49 +20,26 @@ class PostsController < ApplicationController
 #   end
 
   def create
-    if params[:image_id].present?
-      preloaded = Cloudinary::PreloadedFile.new(params[:image_id])
-      raise "Invalid upload signature" if !preloaded.valid?
+  	puts "media id",:media_id
+  	if params[:media_id].present?
+  	  puts "checking"
+  	  preloaded = Cloudinary::PreloadedFile.new(params[:media_id])         
+  	  puts "create instance"
+  	  raise "Invalid upload signature" if !preloaded.valid?
+  	  puts "PARAMS"
+  	  p params
+  	  puts "PRELOADED"
+  	  p preloaded
+  	  puts "public id", preloaded.public_id
+  	  puts "public resource_type", preloaded.resource_type
+  	  puts "PARAMS POST", params[:post]
+  	  params[:post][:image_id]=preloaded.identifier
+  	  puts "PARAMS POST2", params[:post]
+  	  Post.create(post_params)
 
-      # puts "preloaded identifier",preloaded.identifier
-      # puts "PARAMS POST", params[:post]
-
-      params[:post][:image_id] = preloaded.public_id
-      params[:post][:media_type] = preloaded.resource_type
-
-      # puts "PARAMS POST2", params[:post]
-
-      Post.create(post_params)
-
-      redirect_to root_path
-
-    end
-
-    # if !params[:image_id].present?
-    #  puts "no image id"
-    # end
-
-
-
+  	  redirect_to root_path
+  	end
   end
-
-  # def create
-  # 	Post.create(post_params)
-  #   puts "hello papaya"
-
-  #   if params[:image_id].present?
-  #     puts params[:image_id]
-  #     preloaded = Cloudinary::PreloadedFile.new(params[:image_id])
-  #     raise "Invalid upload signature" if !preloaded.valid?
-  #     @model.image_id = preloaded.identifier
-  #   end
-
-  #   if !params[:image_id].present?
-  #     puts "no image id"
-  #   end
-
-  # 	redirect_to root_path
-  # end
 
 #   def update
 #     @post = Post.find(params[:id])

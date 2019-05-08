@@ -8,7 +8,8 @@
 
 require 'faker'
 
-User.create(
+User.create([
+      {
         name: 'GA',
         username: 'GA',
         website: 'https://generalassemb.ly/',
@@ -16,7 +17,35 @@ User.create(
         password: '123ewq',
         password_confirmation: '123ewq',
         admin: true
-    )
+      },
+      {
+        name: 'doggoMemes',
+        username: 'doggoMemes',
+        website: 'https://doggoMemes.com/',
+        email: 'doggoMemes@ga.com',
+        password: '123ewq',
+        password_confirmation: '123ewq',
+        admin: true
+      },
+      {
+        name: 'landscapePix',
+        username: 'landscapePix',
+        website: 'https://landscapePix.com/',
+        email: 'landscapePix@ga.com',
+        password: '123ewq',
+        password_confirmation: '123ewq',
+        admin: true
+      },
+      {
+        name: 'FoodieDream',
+        username: 'FoodieDream',
+        website: 'https://FoodieDream.com/',
+        email: 'FoodieDream@ga.com',
+        password: '123ewq',
+        password_confirmation: '123ewq',
+        admin: true
+      }
+    ])
 
 50.times do
     name  = Faker::Name.name
@@ -50,5 +79,18 @@ Posts = Post.create([
   {media_type: 'image', image_id: 'kfwnuzqjvludurp2xuhr', user_id: '1'},
   {media_type: 'image', image_id: 'mhbzbkeg0dnqhj7un79y', user_id: '1'},
   {media_type: 'image', image_id: 'dzswxgf73ctbrdy8adik', user_id: '1'},
-  {media_type: 'image', image_id: 'dnsprhnn5stnyorapsag', user_id: '1'}
+  {media_type: 'image', image_id: 'dnsprhnn5stnyorapsag', user_id: '1'},
+  {media_type: 'image', image_id: 'sxnsqd4cjhzuvfsydv68', user_id: '2'},
+  {media_type: 'image', image_id: 'mtzowsbe8qvzajlbcmco', user_id: '2'},
+  {media_type: 'image', image_id: 'yvj46zvdxhwcmpaoi984', user_id: '2'},
+  {media_type: 'image', image_id: 'thqw7yexvdn3iqmycwgn', user_id: '2'},
+  {media_type: 'image', image_id: 'o0wavhq6tphm29npnzgj', user_id: '3'},
+  {media_type: 'image', image_id: 's5esin0b38a2mrxpy4it', user_id: '3'},
+  {media_type: 'image', image_id: 'siu5jitquunwd8ei4xzd', user_id: '3'},
+  {media_type: 'image', image_id: 'sny2k7yxi1xd8kunjeyr', user_id: '3'},
+  {media_type: 'image', image_id: 'ffumoit3s4bmoaogqtxa', user_id: '4'},
+  {media_type: 'image', image_id: 'ldlwjjoq2imfziqj9jhk', user_id: '4'},
+  {media_type: 'image', image_id: 'emyctakfr2h8mc04pdz1', user_id: '4'},
+  {media_type: 'image', image_id: 'ip765w2ajpjcs7pj6lrx', user_id: '4'},
+  {media_type: 'image', image_id: 'bm2zq6nmow3onigu7o4f', user_id: '4'},
 ])

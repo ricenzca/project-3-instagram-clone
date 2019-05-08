@@ -2,8 +2,9 @@
 <div class="user-images">
 
 <% @posts.each do |post| %>
-
-	<img src= "https://res.cloudinary.com/dvaat1mxu/image/upload/v1557290829/"<%= post[:image_id] %>".jpg">
+	<div class="wrapper">
+		<img src= "https://res.cloudinary.com/dvaat1mxu/image/upload/v1557290829/<%= post[:image_id] %>.jpg">
+	</div>
 <% end %>
 
 </div>

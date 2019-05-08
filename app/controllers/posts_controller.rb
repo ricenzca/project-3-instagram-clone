@@ -16,18 +16,54 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  def new
-  end
-
 #   def edit
 #     @post = Post.find(params[:id])
 #   end
 
   def create
-  	Post.create(post_params)
+    if params[:image_id].present?
+      preloaded = Cloudinary::PreloadedFile.new(params[:image_id])
+      raise "Invalid upload signature" if !preloaded.valid?
 
-  	redirect_to root_path
+      # puts "preloaded identifier",preloaded.identifier
+      # puts "PARAMS POST", params[:post]
+
+      params[:post][:image_id] = preloaded.public_id
+      params[:post][:media_type] = preloaded.resource_type
+
+      # puts "PARAMS POST2", params[:post]
+
+      Post.create(post_params)
+
+      redirect_to root_path
+
+    end
+
+    # if !params[:image_id].present?
+    #  puts "no image id"
+    # end
+
+
+
   end
+
+  # def create
+  # 	Post.create(post_params)
+  #   puts "hello papaya"
+
+  #   if params[:image_id].present?
+  #     puts params[:image_id]
+  #     preloaded = Cloudinary::PreloadedFile.new(params[:image_id])
+  #     raise "Invalid upload signature" if !preloaded.valid?
+  #     @model.image_id = preloaded.identifier
+  #   end
+
+  #   if !params[:image_id].present?
+  #     puts "no image id"
+  #   end
+
+  # 	redirect_to root_path
+  # end
 
 #   def update
 #     @post = Post.find(params[:id])
@@ -43,22 +79,10 @@ class PostsController < ApplicationController
 #     redirect_to root_path
 #   end
 
-  def storeNew
-    # Cloudinary::Uploader.upload('')
-
-    puts "hello banana"
-    if params[:image_id].present?
-      puts :image_id
-      # preloaded = Cloudinary::PreloadedFile.new(params[:image_id])
-      # raise "Invalid upload signature" if !preloaded.valid?
-      # @model.image_id = preloaded.identifier
-    end
-  end
-  
   private
 
   def post_params
-    params.require(:post).permit(:media_type, :image_id, :user_id)
+    params.require(:post).permit(:media_type, :user_id, :image_id)
   end
 
 end

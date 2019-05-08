@@ -1,15 +1,18 @@
 class PostsController < ApplicationController
 
   def index
-    # @posts = Post.all
-    # @videos = Video.all
+    following = Relationship.select("followed_id").where(follower_id: current_user.id )
+    puts "FOLLOWING!!"
+    p following
 
-    # if request.query_parameters[:order] === "desc"
-    #   @posts = Post.order(created_at: :desc)
-    # else
-      # @posts = Post.order(created_at: :desc)
-      @posts = Post.order(created_at: :desc)
-    # end
+    arr = following.map do |item|
+      item.followed_id
+    end
+    puts "arr"
+    p arr
+    @posts = Post.where(id: arr).order(created_at: :desc)
+    puts "@posts"
+    p @posts
   end
 
   def show

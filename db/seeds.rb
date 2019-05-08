@@ -8,9 +8,11 @@
 
 require 'faker'
 
-10.times do
+50.times do
+    name  = Faker::Name.name
     password = Faker::Internet.password(8,20)
     User.create(
+        name:  name,
         email: Faker::Internet.email,
         password: '1234567',
         password_confirmation: '1234567'
@@ -25,12 +27,12 @@ User.create(
     )
 
 # Following relationships
-# users = User.all
-# user  = users.first
-# following = users[2..50]
-# followers = users[3..40]
-# following.each { |followed| user.follow(followed) }
-# followers.each { |follower| follower.follow(user) }
+users = User.all
+user  = users.first
+following = users[2..50]
+followers = users[3..40]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }
 
 # Posts
 # Posts = Post.create([

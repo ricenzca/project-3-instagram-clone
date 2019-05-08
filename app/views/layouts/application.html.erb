@@ -4,18 +4,17 @@
     <title>Insta</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <%= javascript_include_tag 'application' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <nav class="navbar navbar-light bg-light d-flex">
       <div class="container">
         <div class="logo">
-          <a class="navbar-brand" style="font-family:'Billabong'" href="#">
+          <a class="navbar-brand" href="#">
             <%= fa_stacked_icon "camera inverse", base: "circle"%>
-            Instagram
+            <span class="insta-title">Instagram</span>
           </a>
         </div>
         <div class="m-auto">
@@ -28,25 +27,24 @@
           <a><i class="fa fa-heart"></i></a>
 
           <% if user_signed_in? %>
-            <a href="<%= destroy_user_session_path%>" data-method="delete">
+            <a href= <%= user_path(current_user)%>>
               <i class="fa fa-user"></i>
             </a>
           <% else %>
-            <a href="<%= new_user_session_path%>">
+            <a href= <%= new_user_session_path%>>
               <i class="fa fa-sign-in"></i>
             </a>
           <% end %>
-          
+
         </div>
       </div>
     </nav>
-
 
     <main class="container" style="min-height: 500px;">
       <%= yield %>
     </main>
 
-    <footer class="container footer font-weight-bold">
+    <footer class="container footer">
       <nav class="navbar d-flex">
         <ul>
           <li>ABOUT US
@@ -66,5 +64,3 @@
       </nav>
     </footer>
   </body>
-
-

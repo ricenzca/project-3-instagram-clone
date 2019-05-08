@@ -2,9 +2,6 @@ Rails.application.routes.draw do
   devise_for :users
 
   root 'posts#index'
-    # get '/posts/show/:id' => 'posts#show' , as: 'post'
-    # get '/posts/new' => 'posts#new', as: 'newPost'
-    # post '/posts/new' => 'posts#storeNew'
 
   resources :users do
     member do
@@ -15,8 +12,8 @@ Rails.application.routes.draw do
   resources :posts do
     resources :likes
   end
-
-  resources :posts
+  
+  resources :posts, :users
 
   resources :friends, :likes
   resources :relationships, only: [:create, :destroy]

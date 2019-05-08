@@ -1,24 +1,67 @@
-<% provide(:title, @user.name) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section>
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-    </section>
-    <section class="stats">
-      <%= render 'shared/stats' %>
-    </section>
-  </aside>
-  <div class="col-md-8">
-    <%= render 'follow_form' if logged_in? %>
-    <% if @user.posts.any? %>
-      <h3>Posts (<%= @user.posts.count %>)</h3>
-      <ol class="posts">
-        <%= render posts %>
-      </ol>
-      <%= will_paginate @posts %>
-    <% end %>
+<div class="user-profile">
+  <div class="profile row">
+    <div class="col-md-4 avatar">
+      <div class="wrapper">
+        <img src="https://i.imgur.com/RgToMSf.jpg">
+      </div>
+    </div>
+
+    <div class="col-md-8 basic-info">
+      <div class="user-wrapper">
+        <h2 class="username"><%= current_user.username %></h2>
+        <a class="edit-profile" href="<%= edit_user_path(current_user) %>">
+				  <button>Edit Profile</button>
+				</a>
+      </div>
+      <ul class="posts">
+        <li><span>12</span> posts</li>
+        <li><a class="link-followers" href="<%= followers_user_path(@user) %>"><span><%= @user.followers.count %></span> followers
+        </li>
+        <li><a class="link-following" href="<%= following_user_path(@user) %>"><span><%= @user.following.count %></span> following</a>
+        </li>
+      </ul>
+      <h2 class="name"><%= current_user.name %></h2>
+      <a class="website"><%=link_to current_user.website, current_user.website, class:  'website' %></a>
+    </div>
+  </div>
+</div>
+
+<div class="user-tabs">
+  <a class="tab active" href="">
+    <i class="fa fa-th"></i>
+    POSTS
+  </a>
+  <a class="tab" href="">
+    <i class="fa fa-tv"></i>
+    IGTV
+  </a>
+  <a class="tab" href="">
+    <i class="fa fa-bookmark"></i>
+    SAVED
+  </a>
+  <a class="tab" href="">
+    <i class="fa fa-tag"></i>
+    TAGGED
+  </a>
+</div>
+
+<div class="user-images">
+  <div class="wrapper">
+    <img src="https://i.imgur.com/WI5DKt7.jpg">
+  </div>
+  <div class="wrapper">
+    <img src="https://i.imgur.com/3c1OQIm.jpg">
+  </div>
+  <div class="wrapper">
+    <img src="https://i.imgur.com/UK8ciXQ.jpg">
+  </div>
+  <div class="wrapper">
+    <img src="your_image_url">
+  </div>
+  <div class="wrapper">
+    <img src="your_image_url">
+  </div>
+  <div class="wrapper">
+    <img src="your_image_url">
   </div>
 </div>

@@ -22,19 +22,12 @@ class PostsController < ApplicationController
   def create
   	puts "media id",:media_id
   	if params[:media_id].present?
-  	  puts "checking"
-  	  preloaded = Cloudinary::PreloadedFile.new(params[:media_id])         
-  	  puts "create instance"
+  	  preloaded = Cloudinary::PreloadedFile.new(params[:media_id])
   	  raise "Invalid upload signature" if !preloaded.valid?
-  	  puts "PARAMS"
-  	  p params
-  	  puts "PRELOADED"
-  	  p preloaded
-  	  puts "public id", preloaded.public_id
-  	  puts "public resource_type", preloaded.resource_type
-  	  puts "PARAMS POST", params[:post]
-  	  params[:post][:image_id]=preloaded.identifier
-  	  puts "PARAMS POST2", params[:post]
+
+  	  params[:post][:image_id]=preloaded.public_id
+      params[:post][:media_type]=preloaded.resource_type
+
   	  Post.create(post_params)
 
   	  redirect_to root_path

@@ -18,7 +18,7 @@ User.create(
         admin: true
     )
 
-50.times do
+10.times do
     name  = Faker::Name.name
     password = Faker::Internet.password(8,20)
     User.create(
@@ -35,8 +35,8 @@ end
 # Following relationships
 users = User.all
 user  = users.first
-following = users[2..50]
-followers = users[3..40]
+following = users[2..10]
+followers = users[3..10]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
 
@@ -45,10 +45,23 @@ followers.each { |follower| follower.follow(user) }
 #   {url: 'https://res.cloudinary.com/dvaat1mxu/image/upload/v1557127015/wubgh7ipdyfs1auwhh9e.jpg', user_id: '1'},{url: 'https://res.cloudinary.com/dvaat1mxu/image/upload/v1557126646/y8hlyg8v1fy2bn8ag0wo.jpg', user_id: 1},{url: 'https://res.cloudinary.com/dvaat1mxu/image/upload/v1556950595/ei3f7b2evgntrqifmfsm.jpg', user_id: 1},{url: 'https://res.cloudinary.com/dvaat1mxu/image/upload/v1556950585/wc4plbipvzg5zxqkpekl.jpg', user_id: 1},{url: 'https://res.cloudinary.com/dvaat1mxu/image/upload/v1556873051/blue_lake.jpg', user_id: 1}, {url: 'https://res.cloudinary.com/dvaat1mxu/image/upload/v1556866699/sample.jpg', user_id: 1}])
 
 Posts = Post.create([
-  {media_type: 'image', image_id: 'g3smxzn5i920moq9vr4c', user_id: '1'},
-  {media_type: 'image', image_id: 'cv6b9nshsn1iu7wtpkw0', user_id: '1'},
-  {media_type: 'image', image_id: 'kfwnuzqjvludurp2xuhr', user_id: '1'},
-  {media_type: 'image', image_id: 'mhbzbkeg0dnqhj7un79y', user_id: '1'},
-  {media_type: 'image', image_id: 'dzswxgf73ctbrdy8adik', user_id: '1'},
-  {media_type: 'image', image_id: 'dnsprhnn5stnyorapsag', user_id: '1'}
+  {media_type: 'image', public_id: 'g3smxzn5i920moq9vr4c', user_id: '1'},
+  {media_type: 'image', public_id: 'cv6b9nshsn1iu7wtpkw0', user_id: '1'},
+  {media_type: 'image', public_id: 'kfwnuzqjvludurp2xuhr', user_id: '1'},
+  {media_type: 'image', public_id: 'mhbzbkeg0dnqhj7un79y', user_id: '1'},
+  {media_type: 'image', public_id: 'dzswxgf73ctbrdy8adik', user_id: '1'},
+  {media_type: 'image', public_id: 'dnsprhnn5stnyorapsag', user_id: '1'}
+])
+
+Likes = Like.create([
+  {post_id: 6, user_id: 1},
+  {post_id: 6, user_id: 2},
+  {post_id: 6, user_id: 3},
+  {post_id: 6, user_id: 4},
+  {post_id: 6, user_id: 5},
+  {post_id: 5, user_id: 2},
+  {post_id: 5, user_id: 3},
+  {post_id: 5, user_id: 4},
+  {post_id: 5, user_id: 5},
+  {post_id: 1, user_id: 1}
 ])

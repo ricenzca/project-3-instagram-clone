@@ -2,6 +2,8 @@ class UsersController < ApplicationController
 
   before_action :user_signed_in?, only: [:index, :edit, :update, :destroy,
                                         :following, :followers]
+  before_action :admin_user,     only: :destroy
+
   def index
     @users = User.paginate(page: params[:page])
   end
@@ -20,6 +22,12 @@ class UsersController < ApplicationController
   def update
   current_user.update(user_params)
   redirect_to current_user
+  end
+
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted"
+    redirect_to users_url
   end
 
   def following
@@ -41,5 +49,9 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:username, :name, :website,
                                  :bio, :email, :phone, :gender)
+  end
+
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
   end
 end

@@ -8,23 +8,29 @@
 
 require 'faker'
 
+User.create(
+        name: 'GA',
+        username: 'GA',
+        website: 'https://generalassemb.ly/',
+        email: 'hello@ga.com',
+        password: '123ewq',
+        password_confirmation: '123ewq',
+        admin: true
+    )
+
 50.times do
     name  = Faker::Name.name
     password = Faker::Internet.password(8,20)
     User.create(
         name:  name,
+        username: Faker::Internet.username(5..8),
+        website: Faker::Internet.domain_name,
         email: Faker::Internet.email,
         password: '1234567',
         password_confirmation: '1234567'
     )
     puts "user created"
 end
-
-User.create(
-        email: 'hello@ga.com',
-        password: '123ewq',
-        password_confirmation: '123ewq'
-    )
 
 # Following relationships
 users = User.all

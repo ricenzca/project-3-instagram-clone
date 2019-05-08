@@ -38,10 +38,14 @@ gem 'devise'
 
 gem 'faker'
 
-gem 'bootstrap', '~> 4.1.0'
-gem 'popper'
+gem 'bootstrap', '~> 4.3.1'
+gem 'jquery-rails'
+
 gem 'font-awesome-rails'
 
+gem 'will_paginate', '~> 3.1.0'
+
+gem 'bootstrap-will_paginate', '~>1.0.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

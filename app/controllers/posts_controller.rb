@@ -9,14 +9,10 @@ class PostsController < ApplicationController
     # else
       @posts = Post.all
     # end
-
   end
 
   def show
     @post = Post.find(params[:id])
-  end
-
-  def new
   end
 
 #   def edit
@@ -36,8 +32,6 @@ class PostsController < ApplicationController
   	  p preloaded
   	  puts "public id", preloaded.public_id
   	  puts "public resource_type", preloaded.resource_type
-  	  # puts "public format", preloaded.format
-  	  # puts "public filename", preloaded.filename
   	  puts "PARAMS POST", params[:post]
   	  params[:post][:image_id]=preloaded.identifier
   	  puts "PARAMS POST2", params[:post]
@@ -60,7 +54,7 @@ class PostsController < ApplicationController
 
 #     redirect_to root_path
 #   end
-  
+
   private
 
   def post_params

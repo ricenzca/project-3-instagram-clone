@@ -1,27 +1,19 @@
 <%= cloudinary_js_config %>
 
-<h1> new post </h1>
-
-
-<% if false %>
-<%= form_tag("/posts/new", method: "post") do %>
-
-<%= cl_upload_tag(:media_id) %>
-
-<% end %>
-<% end %>
+<h1> New post </h1>
 
 <%= form_for Post.new do |f| %>
-  <%= cl_upload_tag(:media_id) %>
-  <div class="form-group">
-  	<%= f.label :media_type %>
-    <%= f.text_field :media_type %>
-  </div>
-  <div class="form-group">
-    <%= f.text_field :user_id, value: current_user.id, class:'d-none'%>
-  </div>
-  <br>
-  <div class="text-center">
-    <%= f.submit 'Create Post', class: 'btn btn-primary' %>
-  </div>
+
+	<%= cl_upload_tag(:media_id) %>
+
+	<div class="form-group">
+		<%= f.text_field :user_id, value: current_user.id, class:'d-none'%>
+	</div>
+
+	<br>
+
+	<div class="text-center">
+		<%= f.submit 'Create Post', class: 'btn btn-primary' %>
+	</div>
+
 <% end %>

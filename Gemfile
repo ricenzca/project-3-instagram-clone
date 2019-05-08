@@ -40,6 +40,7 @@ gem 'faker'
 
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
+gem 'cloudinary'
 
 gem 'font-awesome-rails'
 
@@ -60,9 +61,6 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
-
-gem 'cloudinary'
-gem 'jquery-rails'
 
 group :test do
   # Adds support for Capybara system testing and selenium driver

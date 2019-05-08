@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     end
     puts "arr"
     p arr
-    @posts = Post.where(id: arr).order(created_at: :desc)
+    @posts = Post.where(user_id: arr).order(created_at: :desc)
     puts "@posts"
     p @posts
   end

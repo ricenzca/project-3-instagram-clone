@@ -7,7 +7,8 @@ class PostsController < ApplicationController
     # if request.query_parameters[:order] === "desc"
     #   @posts = Post.order(created_at: :desc)
     # else
-      @posts = Post.all
+      # @posts = Post.order(created_at: :desc)
+      @posts = Post.order(created_at: :desc)
     # end
   end
 
@@ -25,7 +26,7 @@ class PostsController < ApplicationController
   	  preloaded = Cloudinary::PreloadedFile.new(params[:media_id])
   	  raise "Invalid upload signature" if !preloaded.valid?
 
-  	  params[:post][:image_id]=preloaded.public_id
+  	  params[:post][:public_id]=preloaded.public_id
       params[:post][:media_type]=preloaded.resource_type
 
   	  Post.create(post_params)
@@ -51,7 +52,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:media_type, :user_id, :image_id)
+    params.require(:post).permit(:media_type, :user_id, :public_id)
   end
 
 end

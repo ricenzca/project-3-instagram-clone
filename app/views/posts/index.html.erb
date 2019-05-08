@@ -1,3 +1,5 @@
+
+
 <h1>Instafeed home page</h1>
 
 <% if user_signed_in? %>
@@ -5,10 +7,53 @@
 
 		<a href="<%= new_post_path %>">New Post</a>
 
-      <h3>Post Feed</h3>
-      <%= render 'posts/indexfeed' %>
-    </div>
-  </div>
+      <h3>Post Feed</h3> 
+
+      <div class="posts">
+        <% @posts.each do |post| %>
+          <section class="post">
+            <div class="user">
+
+              <div class="avatar">
+                <img src="https://i.imgur.com/RgToMSf.jpg">
+              </div>
+
+              <div class="username">
+                <%= post.user.username %>
+              </div>
+            </div>
+
+            <img class="main-image" src="https://res.cloudinary.com/dvaat1mxu/image/upload/v1557290829/<%= post[:public_id] %>.jpg" >
+
+            <div class="description">
+              <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+              <% pre_like = post.likes.find { |like| like.user_id == current_user.id} %>
+
+              <% if pre_like %>
+                <%= form_with url: post_like_path(post, pre_like), method: :delete, local: true do |form| %>
+                  <button style="border: none; background: none" type="submit" value="submit">
+                    <%= image_tag("after-like.png", size: "25", alt:"unlike icon", class: "heart") %>
+                  </button>
+                <% end %>
+              <% else %>
+                <%= form_with url: post_likes_path(post), local: true do |form| %>
+                  <button style="border: none; background: none" type="submit" value="submit">
+                    <%= image_tag("before-like.png", size: "25", alt: "like icon", class: "heart") %>
+                  </button>
+                <% end %>
+              <% end %>
+            </div>
+
+            <% if false %>
+
+            <div class="description">
+              <%= post.description %>
+            </div>
+            <% end %>
+
+          </section>
+        <% end %>
+      </div>
 
 <% else %>
 <%= link_to 'log in', new_user_session_url %>

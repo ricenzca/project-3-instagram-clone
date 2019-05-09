@@ -92,7 +92,8 @@ Posts = Post.create([
   {media_type: 'image', public_id: 'ldlwjjoq2imfziqj9jhk', user_id: '4'},
   {media_type: 'image', public_id: 'emyctakfr2h8mc04pdz1', user_id: '4'},
   {media_type: 'image', public_id: 'ip765w2ajpjcs7pj6lrx', user_id: '4'},
-  {media_type: 'image', public_id: 'bm2zq6nmow3onigu7o4f', user_id: '4'}
+  {media_type: 'image', public_id: 'bm2zq6nmow3onigu7o4f', user_id: '4'},
+  {media_type: 'video', public_id: 'gxwcefgst3jpy1ebsggd', user_id: '1'}
 ])
 
 Likes = Like.create([

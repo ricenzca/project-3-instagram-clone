@@ -1,10 +1,21 @@
-
 <div class="user-images">
 
 <% @posts.each do |post| %>
-	<div class="wrapper">
-    <img src= "https://res.cloudinary.com/dvaat1mxu/image/upload/v1557290829/<%= post[:public_id] %>.jpg">
-  </div>
+
+	<% if post.media_type == "image" %>
+		<div class="wrapper">
+	    <img src= "https://res.cloudinary.com/dvaat1mxu/image/upload/v1557368429/<%= post[:public_id] %>.jpg">
+	  </div>
+	<% end %>
+
+	<% if post.media_type == "video" %>
+		<div class="wrapper">
+	    <video src= "https://res.cloudinary.com/dvaat1mxu/video/upload/v1557370688/<%= post[:public_id] %>.mp4" type="video/mp4" controls width=280px height=280px>
+	  </div>
+	<% end %>
+
+
+
 <% end %>
 
 </div>

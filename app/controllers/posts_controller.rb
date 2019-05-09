@@ -31,7 +31,7 @@ class PostsController < ApplicationController
   	if params[:media_id].present?
   	  preloaded = Cloudinary::PreloadedFile.new(params[:media_id])
   	  raise "Invalid upload signature" if !preloaded.valid?
-      puts "hihihi"
+      puts preloaded
   	  params[:post][:public_id]=preloaded.public_id
       params[:post][:media_type]=preloaded.resource_type
 

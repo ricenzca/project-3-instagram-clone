@@ -25,10 +25,9 @@
 
 	<br>
 
-	<div class="text-center">
-		<%= f.submit 'Create Post', class: 'btn btn-primary' %>
-	</div>
+		<%= link_to "Cancel", posts_path, class: "btn btn-primary" %>
 
+		<%= f.submit 'Create Post', class: 'btn btn-success d-none', id:'submitButton' %>
 <% end %>
 
 </div>

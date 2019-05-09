@@ -16,7 +16,14 @@
               </div>
             </div>
 
-            <img class="main-image" src="https://res.cloudinary.com/dvaat1mxu/image/upload/v1557290829/<%= post[:public_id] %>.jpg" >
+            <% if post.media_type == "image" %>
+            	<img class="main-image" src="https://res.cloudinary.com/dvaat1mxu/image/upload/v1557290829/<%= post[:public_id] %>.jpg" >
+            <% end %>
+
+            <% if post.media_type == "video" %>
+            	<video src= "https://res.cloudinary.com/dvaat1mxu/video/upload/v1557370688/<%= post[:public_id] %>.mp4" type="video/mp4" controls width=100% height=100%>
+            <% end %>
+
 
             <div class="description">
               <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>

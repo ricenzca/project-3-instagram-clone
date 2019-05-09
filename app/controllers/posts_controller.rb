@@ -1,14 +1,18 @@
 class PostsController < ApplicationController
 
   def index
-    # @posts = Post.all
-    # @videos = Video.all
+    following = Relationship.select("followed_id").where(follower_id: current_user.id )
+    puts "FOLLOWING!!"
+    p following
 
-    # if request.query_parameters[:order] === "desc"
-    #   @posts = Post.order(created_at: :desc)
-    # else
-      @posts = Post.all
-    # end
+    arr = following.map do |item|
+      item.followed_id
+    end
+    puts "arr"
+    p arr
+    @posts = Post.where(user_id: arr).order(created_at: :desc)
+    puts "@posts"
+    p @posts
   end
 
   def show
@@ -25,7 +29,7 @@ class PostsController < ApplicationController
   	  preloaded = Cloudinary::PreloadedFile.new(params[:media_id])
   	  raise "Invalid upload signature" if !preloaded.valid?
 
-  	  params[:post][:image_id]=preloaded.public_id
+  	  params[:post][:public_id]=preloaded.public_id
       params[:post][:media_type]=preloaded.resource_type
 
   	  Post.create(post_params)
@@ -51,7 +55,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:media_type, :user_id, :image_id)
+    params.require(:post).permit(:media_type, :user_id, :public_id)
   end
 
 end

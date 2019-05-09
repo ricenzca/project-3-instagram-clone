@@ -1,9 +1,8 @@
 <% if user_signed_in? %>
-<%= link_to 'log out', destroy_user_session_url, method: :delete %>
 
 		<a href="<%= new_post_path %>">New Post</a>
 
-      <div class="posts">
+      <div class="posts-index">
         <% @posts.each do |post| %>
           <section class="post">
             <div class="user">

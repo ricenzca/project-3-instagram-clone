@@ -11,36 +11,32 @@
   <body>
     <nav class="navbar navbar-light bg-light d-flex">
       <div class="container">
-        <div class="logo">
-          <a class="navbar-brand d-flex" href="/">
-            <span class="fa-stack" style="vertical-align: top;">
-              <i class="fas fa-circle fa-stack-2x"></i>
-              <i class="fas fa-camera fa-stack-1x fa-inverse"></i>
-            </span>
-            <span class="insta-title">Instaclone</span>
-          </a>
-        </div>
+        
+        <a class="navbar-brand" href="/"><ion-icon name="logo-instagram"></ion-icon>
+          <span class="insta-title">Instagram</span>
+        </a>
+        
         <div class="m-auto">
           <form class="form-inline search-form">
             <input class="form-control mr-sm-2" type="search" placeholder="@search" aria-label="Search">
           </form>
         </div>
         <div class="user-section">
-          <a><i class="fa fa-compass"></i></a>
-          <a><i class="fa fa-heart"></i></a>
+          <a><ion-icon name="compass"></ion-icon></a>
+          <a><ion-icon name="heart"></ion-icon></a>
 
           <% if user_signed_in? %>
             <a href= <%= user_path(current_user)%>>
-              <i class="fa fa-user"></i>
+              <ion-icon name="person"></ion-icon>
             </a>
 					  <%= link_to destroy_user_session_path, method: :delete do %>
 					    <span>
-					      <i class="fa fa-sign-out"></i>
+					      <ion-icon name="log-out"></ion-icon>
 					    </span>
 					  <% end %>
           <% else %>
             <a href= <%= new_user_session_path%>>
-              <i class="fa fa-sign-in"></i>
+              <ion-icon name="log-in"></ion-icon>
             </a>
           <% end %>
 
@@ -71,4 +67,6 @@
         <p> © 2019 INSTACLONE </p>
       </nav>
     </footer>
+    <script src="https://unpkg.com/ionicons@4.2.2/dist/ionicons.js"></script>
   </body>
+</html>

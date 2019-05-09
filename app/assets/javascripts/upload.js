@@ -6,6 +6,9 @@ $(function() {
             },
             progress: function (e, data) {
               $(".status").text("Uploading... " + Math.round((data.loaded * 100.0) / data.total) + "%");
+              if (data.loaded/data.total === 1) {
+                $('#submitButton').removeClass('d-none');
+              }
             },
             fail: function (e, data) {
               $(".status").text("Upload failed");

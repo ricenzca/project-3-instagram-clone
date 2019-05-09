@@ -15,10 +15,14 @@
       </div>
       <ul class="posts">
       	<%= render 'follow_form' if user_signed_in? %>
-        <li><span>12</span> posts</li>
-        <li><a class="link-followers" href="<%= followers_user_path(@user) %>"><span id="followers" class="stat"><%= @user.followers.count %></span> followers
+        <li>
+        	<a class="posts-number"></a><span><%= @user.posts.count %></span> posts
         </li>
-        <li><a class="link-following" href="<%= following_user_path(@user) %>"><span id="following" class="stat"><%= @user.following.count %></span> following</a>
+        <li>
+        	<a class="link-followers" href="<%= followers_user_path(@user) %>"><span id="followers" class="stat"><%= @user.followers.count %></span> followers
+        </li>
+        <li>
+        	<a class="link-following" href="<%= following_user_path(@user) %>"><span id="following" class="stat"><%= @user.following.count %></span> following</a>
         </li>
       </ul>
       <h2 class="name"><%= current_user.name %></h2>

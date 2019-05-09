@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+ @import "font-awesome-sprockets";
  @import "font-awesome";
  @import "users";
  @import "posts";
@@ -60,11 +61,15 @@
   }
 }
 
-.heart:active {
+.fas {
+  color: red;
+}
+
+.clickedHeart:active {
 	animation: exit .2s 0s ease-in-out 1 normal;
 }
 
-.heart {
+.clickedHeart {
 	animation: entrance .1s 0s ease-in-out 1 normal;
 }
 

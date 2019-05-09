@@ -42,7 +42,7 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem 'cloudinary'
 
-gem 'font-awesome-rails'
+gem 'font-awesome-sass', '~> 5.3.1'
 
 gem 'will_paginate', '~> 3.1.0'
 

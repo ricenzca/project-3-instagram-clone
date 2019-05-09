@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Insta</title>
+    <title>Instaclone</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -12,9 +12,12 @@
     <nav class="navbar navbar-light bg-light d-flex">
       <div class="container">
         <div class="logo">
-          <a class="navbar-brand" href="/">
-            <%= fa_stacked_icon "camera inverse", base: "circle"%>
-            <span class="insta-title">Instagram</span>
+          <a class="navbar-brand d-flex" href="/">
+            <span class="fa-stack" style="vertical-align: top;">
+              <i class="fas fa-circle fa-stack-2x"></i>
+              <i class="fas fa-camera fa-stack-1x fa-inverse"></i>
+            </span>
+            <span class="insta-title">Instaclone</span>
           </a>
         </div>
         <div class="m-auto">
@@ -65,7 +68,7 @@
           <li>HASHTAGS</li>
           <li>LANGUAGE</li>
         </ul>
-        <p> © 2019 INSTAGRAM </p>
+        <p> © 2019 INSTACLONE </p>
       </nav>
     </footer>
   </body>

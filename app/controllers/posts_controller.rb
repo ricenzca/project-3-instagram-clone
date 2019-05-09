@@ -1,18 +1,21 @@
 class PostsController < ApplicationController
 
   def index
-    following = Relationship.select("followed_id").where(follower_id: current_user.id )
-    puts "FOLLOWING!!"
-    p following
+    if current_user != nil
+      following = Relationship.select("followed_id").where(follower_id: current_user.id )
+      puts "FOLLOWING!!"
+      p following
 
-    arr = following.map do |item|
-      item.followed_id
+      arr = following.map do |item|
+        item.followed_id
+      end
+
+      puts "arr"
+      p arr
+      @posts = Post.where(user_id: arr).order(created_at: :desc)
+      puts "@posts"
+      p @posts
     end
-    puts "arr"
-    p arr
-    @posts = Post.where(user_id: arr).order(created_at: :desc)
-    puts "@posts"
-    p @posts
   end
 
   def show

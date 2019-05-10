@@ -15,6 +15,7 @@ class PostsController < ApplicationController
       @posts = Post.where(user_id: arr).order(created_at: :desc)
       puts "@posts"
       p @posts
+
     end
   end
 

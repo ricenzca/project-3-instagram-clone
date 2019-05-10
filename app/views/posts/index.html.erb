@@ -1,10 +1,5 @@
 <% if user_signed_in? %>
 
-		<a class="plus-thing" href=<%= new_post_path %>>
-			<ion-icon name="add-circle-outline"></ion-icon>
-		</a>
-
-
       <div class="posts-index">
         <% @posts.each do |post| %>
           <section class="post">
@@ -59,5 +54,4 @@
           </section>
         <% end %>
       </div>
-
 <% end %>

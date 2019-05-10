@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Insta</title>
+    <title>Instagrammer</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -11,31 +11,32 @@
   <body>
     <nav class="navbar navbar-light bg-light d-flex">
       <div class="container">
-
-            <a class="navbar-brand" href="/"><ion-icon name="logo-instagram"></ion-icon>
-            <span class="insta-title">Instagrammer</span>
-            </a>
+				<a class="insta-logo" href="/"><ion-icon name="logo-instagram"></ion-icon></a>
+        <a class="insta-title" href="/">Instagrammer</a>
 
         <div class="m-auto">
           <form class="form-inline search-form">
             <input class="form-control mr-sm-2" type="search" placeholder="@search" aria-label="Search">
           </form>
         </div>
+
         <div class="user-section">
-          <a><ion-icon name="compass"></ion-icon></a>
+          <a class="add-new-post" href=<%= new_post_path %>>
+						<ion-icon name="add-circle-outline"></ion-icon>
+					</a>
           <a><ion-icon name="heart"></ion-icon></a>
 
           <% if user_signed_in? %>
-            <a href= <%= user_path(current_user)%>>
+            <a class="user-account" href= <%= user_path(current_user)%>>
               <ion-icon name="person"></ion-icon>
             </a>
-					  <%= link_to destroy_user_session_path, method: :delete do %>
-					    <span>
-					      <ion-icon name="log-out"></ion-icon>
-					    </span>
+
+            <%= link_to destroy_user_session_path, :class => "logout-link", method: :delete do %>
+					  <ion-icon name="log-out"></ion-icon>
 					  <% end %>
+
           <% else %>
-            <a href= <%= new_user_session_path%>>
+            <a class="login-link" href= <%= new_user_session_path%>>
               <ion-icon name="log-in"></ion-icon>
             </a>
           <% end %>
@@ -51,8 +52,7 @@
     <footer class="container footer">
       <nav class="navbar d-flex">
         <ul>
-          <li>ABOUT US
-          </li>
+          <li>ABOUT US</li>
           <li>SUPPORT</li>
           <li>PRESS</li>
           <li>API</li>

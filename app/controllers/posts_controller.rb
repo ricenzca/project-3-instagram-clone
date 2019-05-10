@@ -5,6 +5,8 @@ class PostsController < ApplicationController
       following = Relationship.select("followed_id").where(follower_id: current_user.id )
       puts "FOLLOWING!!"
       p following
+      puts "current_user"
+      p current_user
 
       arr = following.map do |item|
         item.followed_id
@@ -15,7 +17,7 @@ class PostsController < ApplicationController
       @posts = Post.where(user_id: arr).order(created_at: :desc)
       puts "@posts"
       p @posts
-
+      @avatar = current_user.avatar
     end
   end
 

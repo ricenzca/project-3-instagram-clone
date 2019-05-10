@@ -108,3 +108,9 @@ Likes = Like.create([
   {post_id: 5, user_id: 5},
   {post_id: 1, user_id: 1}
 ])
+
+Komments = Komment.create([
+  {komment: 'more fartsy than artsy', user_id: "1", post_id: "20"},
+  {komment: 'pretty', user_id: "2", post_id: "20"},
+  {komment: '???', user_id: "3", post_id: "20"}
+])

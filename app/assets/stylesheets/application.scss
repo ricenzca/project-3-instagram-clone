@@ -22,22 +22,47 @@
  .container{
   max-width: 1000px;
 }
+
 .navbar{
   border-bottom: 1px solid rgba(0,0,0,.0975);
 }
 
+ion-icon {
+	font-size: 28px;
+}
+
 .insta-title {
 	font-family: "Billabong";
-	font-size: 1.8rem;
+	font-size: 2.2rem;
 	padding-left: 8px;
 }
 
 .user-section{
   a{
-    padding-left: 15px;
+    padding: 0px 12px;
   }
 }
 
+.insta-logo,
+.insta-title,
+.add-new-post,
+.user-account,
+.logout-link,
+.login-link{
+	color: inherit;
+  text-decoration: none;
+}
+
+.insta-logo:hover,
+.insta-title:hover,
+.add-new-post:hover,
+.user-account:hover,
+.logout-link:hover,
+.login-link:hover {
+	color: inherit;
+  text-decoration:none;
+  cursor:pointer;
+}
 
 .search-form{
   input{

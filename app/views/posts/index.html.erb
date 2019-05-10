@@ -1,8 +1,4 @@
 <% if user_signed_in? %>
-  <a class="plus-thing" href=<%= new_post_path %>>
-    <ion-icon name="add-circle-outline"></ion-icon>
-  </a>
-
 
       <div class="posts-index">
         <% @posts.each do |post| %>
@@ -52,4 +48,3 @@
       </div>
 <script type="text/javascript" src="/post-index.js"></script>
 <% end %>
-

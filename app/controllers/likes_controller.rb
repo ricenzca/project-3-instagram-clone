@@ -1,4 +1,4 @@
-class LikesController < ApplicationController
+ class LikesController < ApplicationController
    before_action :find_post
    before_action :find_like, only: [:destroy]
 
@@ -24,7 +24,7 @@ class LikesController < ApplicationController
      @like = @post.likes.find(params[:id])
   end
 
-  
+
   private
 
   def already_liked?

@@ -24,7 +24,7 @@
 
             <div class="description">
               <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-              
+
               <% pre_like = post.likes.find { |like| like.user_id == current_user.id} %>
                 <% if pre_like %>
                   <%= form_with url: post_like_path(post, pre_like), method: :delete, remote: true do |form| %>
@@ -42,6 +42,12 @@
 
               <br>
               <p><b><%= post.user.username %></b>  <%= post.caption %></p>
+
+              <% post.komments.each do |f| %>
+	              <p class="quote"><b><%= f.user.username %> </b><%= f.komment %></p>
+              <% end %>
+
+
             </div>
           </section>
         <% end %>

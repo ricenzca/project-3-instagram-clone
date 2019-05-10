@@ -8,10 +8,10 @@
 
     <div class="col-md-8 basic-info">
       <div class="user-wrapper">
-        <h2 class="username"><%= current_user.username %></h2>
-        <a class="edit-profile" href="<%= edit_user_path(current_user) %>">
-				  <button>Edit Profile</button>
-				</a>
+        	<h2 class="username"><%= @user.username %></h2>
+	        <a class="edit-profile" href="<%= edit_user_path(current_user) %>">
+					  <button>Edit Profile</button>
+					</a>
       </div>
       <ul class="posts">
       	<%= render 'follow_form' if user_signed_in? %>
@@ -25,8 +25,8 @@
         	<a class="link-following" href="<%= following_user_path(@user) %>"><span id="following" class="stat"><%= @user.following.count %></span> following</a>
         </li>
       </ul>
-      <h2 class="name"><%= current_user.name %></h2>
-      <a class="website"><%=link_to current_user.website, current_user.website, class:  'website' %></a>
+      <h2 class="name"><%= @user.name %></h2>
+      <a class="website"><%=link_to @user.website, @user.website, class:  'website' %></a>
     </div>
   </div>
 </div>

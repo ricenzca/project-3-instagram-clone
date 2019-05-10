@@ -11,13 +11,13 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :likes
-    resources :komments
   end
 
   resources :posts, :users
 
   resources :friends, :likes
   resources :relationships, only: [:create, :destroy]
+  resources :komments
 
   root 'posts#index'
 

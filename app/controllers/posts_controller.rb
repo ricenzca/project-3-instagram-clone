@@ -18,6 +18,28 @@ class PostsController < ApplicationController
     end
   end
 
+  # def update_likes
+  #   puts "UPDATE LIKES"
+  #   if current_user != nil
+  #     # following = Relationship.select("followed_id").where(follower_id: current_user.id )
+  #     # puts "FOLLOWING!!"
+  #     # p following
+
+  #     # arr = following.map do |item|
+  #     #   item.followed_id
+  #     # end
+
+  #     # puts "arr"
+  #     # p arr
+  #     # @posts = Post.where(user_id: arr).order(created_at: :desc)
+  #     # puts "@posts"
+  #     # p @posts
+  #     @post.
+  #     # @post = Post.find(params[:post_id])
+  #     render json: @post.to_json
+  #   end
+  # end
+
   def show
     @post = Post.find(params[:id])
   end
@@ -58,7 +80,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:media_type, :user_id, :public_id)
+    params.require(:post).permit(:media_type, :user_id, :public_id, :caption)
   end
 
 end

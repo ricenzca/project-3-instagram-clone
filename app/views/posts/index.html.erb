@@ -24,34 +24,27 @@
 
             <div class="description">
               <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+              
               <% pre_like = post.likes.find { |like| like.user_id == current_user.id} %>
-
-              <% if pre_like %>
-                <%= form_with url: post_like_path(post, pre_like), method: :delete, local: true do |form| %>
-                  <button style="border: none; background: none" type="submit" value="submit">
-                    <%= image_tag("after-like.png", size: "25", alt:"unlike icon", class: "heart") %>
-                  </button>
-                <% end %>
-              <% else %>
-                <%= form_with url: post_likes_path(post), local: true do |form| %>
-                  <button style="border: none; background: none" type="submit" value="submit">
-                    <%= image_tag("before-like.png", size: "25", alt: "like icon", class: "heart") %>
-                  </button>
+                <% if pre_like %>
+                  <%= form_with url: post_like_path(post, pre_like), method: :delete, remote: true do |form| %>
+                    <button class="like-button" style="border: none; background: none" type="submit" value="submit">
+                      <i class="fas fa-heart"></i>
+                    </button>
+                  <% end %>
+                <% else %>
+                  <%= form_with url: post_likes_path(post), remote: true do |form| %>
+                    <button class="like-button" style="border: none; background: none" type="submit" value="submit">
+                      <i class="far fa-heart"></i>
+                    </button>
                 <% end %>
               <% end %>
 
               <br>
               <p><b><%= post.user.username %></b>  <%= post.caption %></p>
             </div>
-
-            <% if false %>
-
-            <div class="description">
-              <%= post.description %>
-            </div>
-            <% end %>
-
           </section>
         <% end %>
       </div>
+<script type="text/javascript" src="/post-index.js"></script>
 <% end %>

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :friends, :likes
   resources :relationships, only: [:create, :destroy]
   resources :komments
+  resources :avatars
 
   root 'posts#index'
 

@@ -9,16 +9,14 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-light bg-light d-flex">
-      <div class="container">
+
+    <nav class="navbar navbar-light bg-light d-flex align-items-start"> 
         
 				<a class="insta-logo" href="/"><ion-icon name="logo-instagram"></ion-icon></a>
         <a class="insta-title" href="/">Instaclone</a>
         
         <div class="m-auto">
-          <form class="form-inline search-form">
-            <input class="form-control mr-sm-2" type="search" placeholder="@search" aria-label="Search">
-          </form>
+          <%= render "search" %>
         </div>
 
         <div class="user-section">
@@ -42,8 +40,6 @@
             </a>
           <% end %>
 
-        </div>
-      </div>
     </nav>
 
     <main class="container" style="min-height: 500px;">

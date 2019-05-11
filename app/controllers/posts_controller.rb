@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   def index
     if current_user != nil
       following = Relationship.select("followed_id").where(follower_id: current_user.id )
+
       puts "FOLLOWING!!"
       p following
       puts "current_user"
@@ -12,36 +13,24 @@ class PostsController < ApplicationController
         item.followed_id
       end
 
-      puts "arr"
-      p arr
       @posts = Post.where(user_id: arr).order(created_at: :desc)
+
       puts "@posts"
       p @posts
       @avatar = current_user.avatar
+
     end
   end
 
-  # def update_likes
-  #   puts "UPDATE LIKES"
-  #   if current_user != nil
-  #     # following = Relationship.select("followed_id").where(follower_id: current_user.id )
-  #     # puts "FOLLOWING!!"
-  #     # p following
-
-  #     # arr = following.map do |item|
-  #     #   item.followed_id
-  #     # end
-
-  #     # puts "arr"
-  #     # p arr
-  #     # @posts = Post.where(user_id: arr).order(created_at: :desc)
-  #     # puts "@posts"
-  #     # p @posts
-  #     @post.
-  #     # @post = Post.find(params[:post_id])
-  #     render json: @post.to_json
-  #   end
-  # end
+  def search
+    if params[:query].blank?  
+      redirect_to(root_path, alert: "Empty field!") and return  
+    else  
+      @parameter = params[:query].downcase  
+      @results = User.where("lower(username) LIKE :query OR lower(name) LIKE :query" , query: "%#{@parameter}%").order(username: :asc).uniq
+      render json: @results.to_json
+    end 
+  end
 
   def show
     @post = Post.find(params[:id])

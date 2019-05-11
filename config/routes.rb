@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  get '/updatelikes' => "posts#update_likes"
+  get '/search/:query' => "posts#search", :as => "search_user"
+  
+  resources :search, only: [:index]
 
   resources :users do
     member do

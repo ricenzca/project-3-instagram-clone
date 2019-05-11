@@ -1,7 +1,13 @@
 <!-- SINGLE POST -->
 <div class="post-show row">
   <div class="col-md-8">
-    <img class="image" src= "https://res.cloudinary.com/dvaat1mxu/image/upload/v1557368429/<%= @post[:public_id] %>.jpg">
+  	<% if @post.media_type == "image" %>
+    	<img class="image" src= "https://res.cloudinary.com/dvaat1mxu/image/upload/v1557368429/<%= @post[:public_id] %>.jpg">
+    <% end %>
+
+    <% if @post.media_type == "video" %>
+    	<video src= "https://res.cloudinary.com/dvaat1mxu/video/upload/v1557370688/<%= @post[:public_id] %>.mp4" type="video/mp4" controls>
+    <% end %>
   </div>
   <div class="col-md-4">
     <div class="user">
@@ -27,6 +33,18 @@
 					</button>
 				<% end %>
 			<% end %>
+
+			<% @post.komments.each do |f| %>
+        <p class="quote"><b><%= f.user.username %> </b><%= f.komment %></p>
+      <% end %>
+      <%= form_for Komment.new do |f| %>
+        <p>
+          <%= f.text_field :komment, placeholder: "Add a comment..." %>
+          <%= f.text_field :user_id, value: current_user.id, class:'d-none'%>
+          <%= f.text_field :@post_id, value: @post.id, class:'d-none'%>
+          <%= f.submit 'Add' %>
+        </p>
+      <% end %>
 
     </div>
   </div>

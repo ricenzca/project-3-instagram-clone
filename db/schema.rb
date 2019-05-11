@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_08_012943) do
+ActiveRecord::Schema.define(version: 2019_05_10_063834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "avatars", force: :cascade do |t|
+    t.string "public_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_avatars_on_user_id"
+  end
+
+  create_table "komments", force: :cascade do |t|
+    t.string "komment"
+    t.bigint "user_id"
+    t.bigint "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_komments_on_post_id"
+    t.index ["user_id"], name: "index_komments_on_user_id"
+  end
 
   create_table "likes", force: :cascade do |t|
     t.bigint "post_id"
@@ -39,9 +57,7 @@ ActiveRecord::Schema.define(version: 2019_05_08_012943) do
     t.integer "followed_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["followed_id"], name: "index_relationships_on_followed_id"
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
-    t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -63,6 +79,8 @@ ActiveRecord::Schema.define(version: 2019_05_08_012943) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "avatars", "users"
+  add_foreign_key "komments", "posts"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
 end

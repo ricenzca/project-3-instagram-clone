@@ -15,11 +15,11 @@
       <%= form_with model: current_user, local: true, html: {class: "form-horizontal form-edit-user"} do |f| %>
 		  <div class="form-group row">
 		    <div class="col-sm-3 col-form-label">
-		      <img class="avatar" src="https://i.imgur.com/RgToMSf.jpg">
+		      <img class="avatar" src="https://res.cloudinary.com/dvaat1mxu/image/upload/v1557478671/<%= @avatar[:public_id] %>.jpg">
 		    </div>
 		    <div class="col-sm-9">
-		      <p class="username"><%=current_user.username %></p>
-		      <a class="change-photo" href="">Change Profile Photo</a>
+		      <p class="username"><%=@user.username %></p>
+		      <a class="change-photo" href="/avatars/new">Change Profile Photo</a>
 		    </div>
 		  </div>
 		  <div class="form-group row">

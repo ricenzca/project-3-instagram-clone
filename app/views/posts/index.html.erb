@@ -1,8 +1,4 @@
 <% if user_signed_in? %>
-  <a class="plus-thing" href=<%= new_post_path %>>
-    <ion-icon name="add-circle-outline"></ion-icon>
-  </a>
-
 
       <div class="posts-index">
         <% @posts.each do |post| %>
@@ -10,7 +6,7 @@
             <div class="user">
 
               <div class="avatar">
-                <img src="https://i.imgur.com/RgToMSf.jpg">
+                <img src="https://res.cloudinary.com/dvaat1mxu/image/upload/v1557478671/<%= @avatar[:public_id] %>.jpg">
               </div>
 
               <div class="username">
@@ -28,7 +24,7 @@
 
             <div class="description">
               <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-              
+
               <% pre_like = post.likes.find { |like| like.user_id == current_user.id} %>
                 <% if pre_like %>
                   <%= form_with url: post_like_path(post, pre_like), method: :delete, remote: true do |form| %>
@@ -46,10 +42,22 @@
 
               <br>
               <p><b><%= post.user.username %></b>  <%= post.caption %></p>
+
+              <% post.komments.each do |f| %>
+	              <p class="quote"><b><%= f.user.username %> </b><%= f.komment %></p>
+              <% end %>
+              <%= form_for Komment.new do |f| %>
+                <p>
+                  <%= f.text_field :komment, placeholder: "Add a comment..." %>
+                  <%= f.text_field :user_id, value: current_user.id, class:'d-none'%>
+                  <%= f.text_field :post_id, value: post.id, class:'d-none'%>
+                  <%= f.submit 'Add' %>
+                </p>
+              <% end %>
+
             </div>
           </section>
         <% end %>
       </div>
-      
-<% end %>
 
+<% end %>

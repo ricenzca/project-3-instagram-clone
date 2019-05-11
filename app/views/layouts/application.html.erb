@@ -9,35 +9,37 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-light bg-light d-flex align-items-start">        
-        <a class="navbar-brand" href="/"><ion-icon name="logo-instagram"></ion-icon>
-          <span class="insta-title">Instagram</span>
-        </a>
 
-        <div class="search m-auto">
+    <nav class="navbar navbar-light bg-light d-flex align-items-start"> 
+        
+				<a class="insta-logo" href="/"><ion-icon name="logo-instagram"></ion-icon></a>
+        <a class="insta-title" href="/">Instaclone</a>
+        
+        <div class="m-auto">
           <%= render "search" %>
         </div>
 
         <div class="user-section">
-          <a><ion-icon name="compass"></ion-icon></a>
+          <a class="add-new-post" href=<%= new_post_path %>>
+						<ion-icon name="add-circle-outline"></ion-icon>
+					</a>
           <a><ion-icon name="heart"></ion-icon></a>
 
           <% if user_signed_in? %>
-            <a href= <%= user_path(current_user)%>>
+            <a class="user-account" href= <%= user_path(current_user)%>>
               <ion-icon name="person"></ion-icon>
             </a>
-					  <%= link_to destroy_user_session_path, method: :delete do %>
-					    <span>
-					      <ion-icon name="log-out"></ion-icon>
-					    </span>
+
+            <%= link_to destroy_user_session_path, :class => "logout-link", method: :delete do %>
+					  <ion-icon name="log-out"></ion-icon>
 					  <% end %>
+
           <% else %>
-            <a href= <%= new_user_session_path%>>
+            <a class="login-link" href= <%= new_user_session_path%>>
               <ion-icon name="log-in"></ion-icon>
             </a>
           <% end %>
 
-        </div>
     </nav>
 
     <main class="container" style="min-height: 500px;">
@@ -47,8 +49,7 @@
     <footer class="container footer">
       <nav class="navbar d-flex">
         <ul>
-          <li>ABOUT US
-          </li>
+          <li>ABOUT US</li>
           <li>SUPPORT</li>
           <li>PRESS</li>
           <li>API</li>

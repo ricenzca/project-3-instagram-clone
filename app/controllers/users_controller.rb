@@ -11,18 +11,21 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = Post.where(user_id: params[:id]).order(created_at: :desc)
+    @post = Post.find(params[:id])
+    @avatar = current_user.avatar
   end
 
   def new
   end
 
   def edit
-  @user = User.find(params[:id])
+    @user = User.find(params[:id])
+    @avatar = current_user.avatar
   end
 
   def update
-  current_user.update(user_params)
-  redirect_to current_user
+    current_user.update(user_params)
+    redirect_to current_user
   end
 
   def destroy

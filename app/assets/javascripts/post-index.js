@@ -14,7 +14,7 @@ function refreshLikes () {
 
 	if (clickedHeart === "fas fa-heart red-heart" || clickedHeart === "fas fa-heart red-heart clickedHeart") {
 		this.children[0].className = "far fa-heart clickedHeart";
-		
+
 		if (arr[0] == "1") {
 			arr[0] = `${parseInt(arr[0])-1}`;
 			arr[1] = "Likes"

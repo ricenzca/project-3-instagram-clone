@@ -4,11 +4,21 @@ class PostsController < ApplicationController
     if current_user != nil
       following = Relationship.select("followed_id").where(follower_id: current_user.id )
 
+      puts "FOLLOWING!!"
+      p following
+      puts "current_user"
+      p current_user
+
       arr = following.map do |item|
         item.followed_id
       end
 
       @posts = Post.where(user_id: arr).order(created_at: :desc)
+
+      puts "@posts"
+      p @posts
+      @avatar = current_user.avatar
+
     end
   end
 

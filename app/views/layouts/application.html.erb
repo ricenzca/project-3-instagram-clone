@@ -9,18 +9,15 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-light bg-light d-flex">
-      <div class="container">
-        
+    <nav class="navbar navbar-light bg-light d-flex align-items-start">        
         <a class="navbar-brand" href="/"><ion-icon name="logo-instagram"></ion-icon>
           <span class="insta-title">Instagram</span>
         </a>
-        
-        <div class="m-auto">
-          <form class="form-inline search-form">
-            <input class="form-control mr-sm-2" type="search" placeholder="@search" aria-label="Search">
-          </form>
+
+        <div class="search m-auto">
+          <%= render "search" %>
         </div>
+
         <div class="user-section">
           <a><ion-icon name="compass"></ion-icon></a>
           <a><ion-icon name="heart"></ion-icon></a>
@@ -41,7 +38,6 @@
           <% end %>
 
         </div>
-      </div>
     </nav>
 
     <main class="container" style="min-height: 500px;">

@@ -2,40 +2,18 @@
 
 <% @posts.each do |post| %>
 
-  <!-- Trigger the modal with a button -->
-  <% if post.media_type == "image" %>
-	  <div class="wrapper">
-	  	<img src="https://res.cloudinary.com/dvaat1mxu/image/upload/v1557368429/<%= post[:public_id] %>.jpg" data-toggle="modal" data-target="#myModal">
+	<% if post.media_type == "image" %>
+		<div class="wrapper">
+			<%=link_to post_path(post) do %>
+	    <img src= "https://res.cloudinary.com/dvaat1mxu/image/upload/v1557368429/<%= post[:public_id] %>.jpg">
+	    <% end %>
 	  </div>
-  <% end %>
+	<% end %>
 
-  <% if post.media_type == "video" %>
+	<% if post.media_type == "video" %>
 		<div class="wrapper">
 	    <video src= "https://res.cloudinary.com/dvaat1mxu/video/upload/v1557370688/<%= post[:public_id] %>.mp4" type="video/mp4" controls width=280px height=280px>
 	  </div>
 	<% end %>
 <% end %>
-
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <% @posts.each do |post| %>
-
-        <% end %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
+</div>

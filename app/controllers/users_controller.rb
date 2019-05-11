@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = Post.where(user_id: params[:id]).order(created_at: :desc)
+    @post = Post.find(params[:id])
     @avatar = current_user.avatar
   end
 

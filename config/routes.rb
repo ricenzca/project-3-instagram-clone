@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :likes
   end
 
-  resources :posts, :users
+  resources :posts, :users, only: [:show]
 
   resources :friends, :likes
   resources :relationships, only: [:create, :destroy]

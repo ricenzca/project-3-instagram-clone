@@ -1,9 +1,15 @@
 <div class="user-profile">
   <div class="profile row">
     <div class="col-md-4 avatar">
+
       <div class="wrapper">
-        <img src="https://res.cloudinary.com/dvaat1mxu/image/upload/v1557478671/<%= @avatar[:public_id] %>.jpg">
+      	<% if @avatar != nil %>
+        	<img src="https://res.cloudinary.com/dvaat1mxu/image/upload/v1557478671/<%= @avatar[:public_id] %>.jpg">
+      	<% else %>
+      		<%= image_tag 'default-avatar.png'%>
+      	<% end %>
       </div>
+
     </div>
 
     <div class="col-md-8 basic-info">

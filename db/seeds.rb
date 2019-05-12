@@ -114,3 +114,10 @@ Komments = Komment.create([
   {komment: 'pretty', user_id: "2", post_id: "20"},
   {komment: '???', user_id: "3", post_id: "20"}
 ])
+
+Avatars = Avatar.create([
+  {public_id: 'qeqwrdliawksqefo2bfj', user_id: "1"},
+  {public_id: 'qvf3infyhasxu8iwwurv', user_id: "2"},
+  {public_id: 'tupdjrnrdtpgpzffa9g4', user_id: "4"},
+  {public_id: 'mxmjwbsf8d9zhuyi9s9a', user_id: "3"}
+])

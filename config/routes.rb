@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  get '/updatelikes' => "posts#update_likes"
+  get '/search/:query' => "posts#search", :as => "search_user"
+  
+  resources :search, only: [:index]
 
   resources :users do
     member do
@@ -13,7 +15,7 @@ Rails.application.routes.draw do
     resources :likes
   end
 
-  resources :posts, :users
+  resources :posts, :users, only: [:show]
 
   resources :friends, :likes
   resources :relationships, only: [:create, :destroy]

@@ -1,0 +1,11 @@
+<% if user_signed_in? %>
+<div id="search-container" class="col-3 d-flex">
+		<input class="form mr-sm-2" type="text" name="search" id="search" aria-label="Search">
+		<div class="search-icon-container">
+			<i class="fas fa-search search-icon"></i>
+			<span>&nbsp;Search</span>
+		</div>
+	<div id="results-container" class="column d-flex">
+	</div>
+</div>
+<% end %>

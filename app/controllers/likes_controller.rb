@@ -8,7 +8,8 @@
     else
       @post.likes.create(user_id: current_user.id)
     end
-    redirect_to root_path
+    # redirect_to root_path
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
@@ -17,7 +18,8 @@
     else
       @like.destroy
     end
-    redirect_to root_path
+    # redirect_to root_path
+    redirect_back(fallback_location: root_path)
   end
 
   def find_like

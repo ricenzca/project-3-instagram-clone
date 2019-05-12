@@ -55,7 +55,7 @@
                   <%= f.text_field :komment, placeholder: "Add a comment..." %>
                   <%= f.text_field :user_id, value: current_user.id, class:'d-none'%>
                   <%= f.text_field :post_id, value: post.id, class:'d-none'%>
-                  <%= f.submit 'Add' %>
+                  <%= f.submit 'Add', class:'d-none comment_submit' %>
                 </p>
               <% end %>
 

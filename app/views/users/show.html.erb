@@ -15,9 +15,11 @@
     <div class="col-md-8 basic-info">
       <div class="user-wrapper">
         	<h2 class="username"><%= @user.username %></h2>
-	        <a class="edit-profile" href="<%= edit_user_path(current_user) %>">
-					  <button>Edit Profile</button>
-					</a>
+					<% if current_user?(@user) %>
+		        <a class="edit-profile" href="<%= edit_user_path(current_user) %>">
+						  <button>Edit Profile</button>
+						</a>
+					<% end %>
       </div>
       <ul class="posts">
       	<%= render 'follow_form' if user_signed_in? %>

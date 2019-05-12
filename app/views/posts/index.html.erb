@@ -9,7 +9,7 @@
       	      	<% if post.user.avatar != nil %>
 				        	<img src="https://res.cloudinary.com/dvaat1mxu/image/upload/v1557478671/<%= post.user.avatar[:public_id] %>.jpg">
 				      	<% else %>
-				      		<%= image_tag 'default-avatar.png'%>
+				      		<%= image_tag 'default-avatar.png' %>
 				      	<% end %>
               </div>
 
@@ -18,12 +18,16 @@
               </div>
             </div>
 
-            <% if post.media_type == "image" %>
-            	<img class="main-image" src="https://res.cloudinary.com/dvaat1mxu/image/upload/v1557370688/<%= post[:public_id] %>.jpg" >
+            <% if post.media_type == "image" && post.method == nil %>
+            	<img class="main-image" src="https://res.cloudinary.com/dvaat1mxu/image/upload/v1557654876/<%= post[:public_id] %>.jpg" >
+            <% end %>
+
+            <% if post.media_type == "image" && post.method != nil %>
+            	<img class="main-image" src="https://res.cloudinary.com/dvaat1mxu/image/upload/e_art:<%= post[:method] %>/v1557654876/<%= post[:public_id] %>.jpg" >
             <% end %>
 
             <% if post.media_type == "video" %>
-            	<video src= "https://res.cloudinary.com/dvaat1mxu/video/upload/v1557370688/<%= post[:public_id] %>.mp4" type="video/mp4" controls width=100% ></video>
+            	<video src= "https://res.cloudinary.com/dvaat1mxu/video/upload/v1557654876/<%= post[:public_id] %>.mp4" type="video/mp4" controls width=100% ></video>
             <% end %><br>
 
             <div class="description">

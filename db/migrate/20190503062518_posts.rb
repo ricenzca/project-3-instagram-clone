@@ -4,6 +4,7 @@ class Posts < ActiveRecord::Migration[5.2]
 	  	t.string :media_type
 	  	t.string :public_id
       t.string :caption
+      t.string :method
 	  	t.references :user
 	  	t.timestamps
 	end

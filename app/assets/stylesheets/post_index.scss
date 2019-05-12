@@ -5,21 +5,22 @@
 }
 
 .posts-index{
-  margin: 50px 180px 10px;
+  margin: 10px 180px 10px;
 
   .post{
     border: 1px solid #efefef;
-    margin: 60px 0;
+    margin: 30px 0;
     border-radius: 3px;
 
     .user{
+      height: 60px;
       border-bottom: 1px solid #efefef;
       display: flex;
-
+      align-items: center;
+      
       .avatar{
-        width: 30px;
-        height: 30px;
-        margin: 8px;
+        width: 34px;
+        height: 34px;
 
         img{
         	object-fit: cover;
@@ -30,10 +31,11 @@
         }
       }
       .username{
-        padding-top: 13px;
         color: #262626;
         font-size: 14px;
         font-weight: 600;
+        padding-left: 5px;
+        text-decoration: none;
       }
     }
 
@@ -42,7 +44,17 @@
       border-bottom: 1px solid #f4f4f4;
     }
     .description{
-      padding: 20px;
+      padding: 16px;
+      padding-bottom: 0;
+    }
+
+    p {
+      margin-bottom: .5rem;
+    }
+
+    .comments-container {
+      max-height: 76px;
+      overflow-y: scroll;
     }
   }
 }

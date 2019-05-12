@@ -20,7 +20,7 @@ function searchIconEventHandler() {
 
 	searchBar.addEventListener("blur", () => {
 		searchBar.value = "";
-		setTimeout(clearSearchDropdown, 200);
+		setTimeout(clearSearchDropdown, 100);
 		searchIconContainer.style.visibility = "visible";
 	})
 	searchIconContainer.addEventListener("click", searchIconEventHandler);

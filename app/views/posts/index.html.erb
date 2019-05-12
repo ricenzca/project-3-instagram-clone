@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
 
-      <div class="posts-index">
+      <div class="words posts-index">
         <% @posts.each do |post| %>
           <section class="post">
             <div class="user">
@@ -14,7 +14,7 @@
               </div>
 
               <div class="username">
-                <%= post.user.username %>
+                <%= link_to post.user.username, user_path(post.user), class: "username" %>
               </div>
             </div>
 
@@ -31,39 +31,67 @@
             <% end %><br>
 
             <div class="description">
-              <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-
-              <% pre_like = post.likes.find { |like| like.user_id == current_user.id} %>
-                <% if pre_like %>
-                  <%= form_with url: post_like_path(post, pre_like), method: :delete, remote: true do |form| %>
-                    <button class="like-button" style="border: none; background: none" type="submit" value="submit">
-                      <i class="fas fa-heart red-heart"></i>
-                    </button>
+              <div class="icon-container d-flex">
+                <div>
+                <% pre_like = post.likes.find { |like| like.user_id == current_user.id} %>
+                  <% if pre_like %>
+                    <%= form_with url: post_like_path(post, pre_like), class: "like-form", method: :delete, remote: true do |form| %>
+                      <button class="like-button" style="border: none; background: none" type="submit" value="submit">
+                        <i class="fas fa-heart red-heart"></i>
+                      </button>
+                    <% end %>
+                  <% else %>
+                    <%= form_with url: post_likes_path(post), class: "like-form", remote: true do |form| %>
+                      <button class="like-button" style="border: none; background: none" type="submit" value="submit">
+                        <i class="far fa-heart"></i>
+                      </button>
+                    <% end %>
                   <% end %>
-                <% else %>
-                  <%= form_with url: post_likes_path(post), remote: true do |form| %>
-                    <button class="like-button" style="border: none; background: none" type="submit" value="submit">
-                      <i class="far fa-heart"></i>
-                    </button>
+
+              <a href=/posts/<%=post.id%>><i class="far fa-comment"></i></a>
+              <i class="far fa-paper-plane"></i>
+              </div>
+              <i class="far fa-bookmark"></i>
+              </div>
+
+              <p class="words bold"><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+
+              <p><%= link_to post.user.username, user_path(post.user), class: "username" %>
+                <span class="normal"><%= post.caption %></span>
+              </p>
+              <div class=comments-container post-<%=post.id%>>
+                <% post.komments.each do |f| %>
+  	              <p class="quote bold"><%= link_to f.user.username, user_path(f.user), class: "username" %>&nbsp;<span class="normal"><%= f.komment %><span></p>
                 <% end %>
-              <% end %>
-
-              <br>
-              <p><b><%= post.user.username %></b>  <%= post.caption %></p>
-
-              <% post.komments.each do |f| %>
-	              <p class="quote"><b><%= f.user.username %> </b><%= f.komment %></p>
-              <% end %>
-              <%= form_for Komment.new do |f| %>
-                <p>
-                  <%= f.text_field :komment, placeholder: "Add a comment..." %>
-                  <%= f.text_field :user_id, value: current_user.id, class:'d-none'%>
-                  <%= f.text_field :post_id, value: post.id, class:'d-none'%>
-                  <%= f.submit 'Add', class:'d-none' %>
-                </p>
-              <% end %>
+              </div>
+              <div class="timestamp">
+                <p><% 
+                t=Time.now.utc
+                timestamp = post.created_at
+                diff=(t-timestamp)/3600
+                if diff<1 %>
+                  <p class="timestamp"><%= (diff*60).round %> MINUTES AGO
+                  </p>
+                <% elsif diff>=1 && diff<24 %>
+                  <p class="timestamp"><%= diff.round %> HOURS AGO
+                  </p>
+                <% else
+                    diff = diff/24 %>
+                  <p class="timestamp"><%= diff.round %> DAYS AGO
+                  </p>
+                <% end %>
+              </p>
+              </div>
 
             </div>
+
+            <%= form_with scope: :komment, class: "comments-input-container d-flex grey", url: komments_path do |f| %>
+                <%= f.text_field :komment, placeholder: "Add a comment..." %>
+                <%= f.text_field :user_id, value: current_user.id, class:'d-none', placeholder: current_user.username %>
+                <%= f.text_field :post_id, value: post.id, class:'d-none'%>
+                <input disabled="" type="submit" value="Post" class="submit-comment-button bold" >
+            <% end %>
+
           </section>
         <% end %>
       </div>

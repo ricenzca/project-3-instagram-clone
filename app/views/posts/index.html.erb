@@ -6,8 +6,8 @@
             <div class="user">
 
               <div class="avatar">
-      	      	<% if @avatar != nil %>
-				        	<img src="https://res.cloudinary.com/dvaat1mxu/image/upload/v1557478671/<%= @avatar[:public_id] %>.jpg">
+      	      	<% if post.user.avatar != nil %>
+				        	<img src="https://res.cloudinary.com/dvaat1mxu/image/upload/v1557478671/<%= post.user.avatar[:public_id] %>.jpg">
 				      	<% else %>
 				      		<%= image_tag 'default-avatar.png'%>
 				      	<% end %>

@@ -15,13 +15,16 @@
     .user{
       border-bottom: 1px solid #efefef;
       display: flex;
-      
+
       .avatar{
         width: 30px;
+        height: 30px;
         margin: 8px;
 
         img{
+        	object-fit: cover;
           width: 100%;
+          height: 100%;
           border: 1px solid #efefef;
           border-radius: 50%;
         }

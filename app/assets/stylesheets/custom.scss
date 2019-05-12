@@ -7,6 +7,44 @@
   margin-top: 15px;
 }
 
+.avatar{
+	object-fit: cover;
+	width: 50px;
+	height: 50px;
+  margin: 10px 0px;
+  border-radius: 50%;
+  a {
+    padding: 0;
+  }
+}
+
+#userpage-title {
+	margin-top: 20px;
+}
+
+#userpage-username {
+	margin-top: 20px;
+}
+
+.avatar-follow img {
+	margin-top: 20px;
+	object-fit: cover;
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+}
+
+.link-deco {
+	color: inherit;
+  text-decoration: none;
+}
+
+.link-deco:hover {
+	color: inherit;
+  text-decoration:none;
+  cursor:pointer;
+}
+
 .stats {
   overflow: auto;
   margin-top: 0;
@@ -51,4 +89,8 @@
     padding: 10px 0;
     border-bottom: 1px solid black;
   }
+}
+
+.stat {
+
 }

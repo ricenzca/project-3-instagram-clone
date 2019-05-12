@@ -16,9 +16,9 @@
 		  <div class="form-group row">
 		    <div class="col-sm-3 col-form-label">
     	      <% if @avatar != nil %>
-		        		<img src="https://res.cloudinary.com/dvaat1mxu/image/upload/v1557478671/<%= @avatar[:public_id] %>.jpg">
+		        		<img class="avatar" src="https://res.cloudinary.com/dvaat1mxu/image/upload/v1557478671/<%= @avatar[:public_id] %>.jpg">
 		      	<% else %>
-		      		<%= image_tag 'default-avatar.png'%>
+		      		<%= image_tag 'default-avatar.png', class: "avatar" %>
 		      	<% end %>
 		    </div>
 		    <div class="col-sm-9">

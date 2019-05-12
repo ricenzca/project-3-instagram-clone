@@ -120,10 +120,6 @@ a.tab{
   }
 }
 
-img:hover {
-    	opacity: 0.75;
-    }
-
 .user-edit-page{
   display: flex;
   margin-top: 60px;
@@ -173,6 +169,7 @@ img:hover {
     font-weight: 600;
   }
 .avatar{
+		object-fit: cover;
     height: 38px;
     width: 38px;
     border-radius: 50%;

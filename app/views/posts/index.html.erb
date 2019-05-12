@@ -6,7 +6,11 @@
             <div class="user">
 
               <div class="avatar">
-                <img src="https://res.cloudinary.com/dvaat1mxu/image/upload/v1557478671/<%= @avatar[:public_id] %>.jpg">
+      	      	<% if post.user.avatar != nil %>
+				        	<img src="https://res.cloudinary.com/dvaat1mxu/image/upload/v1557478671/<%= post.user.avatar[:public_id] %>.jpg">
+				      	<% else %>
+				      		<%= image_tag 'default-avatar.png'%>
+				      	<% end %>
               </div>
 
               <div class="username">
@@ -29,7 +33,7 @@
                 <% if pre_like %>
                   <%= form_with url: post_like_path(post, pre_like), method: :delete, remote: true do |form| %>
                     <button class="like-button" style="border: none; background: none" type="submit" value="submit">
-                      <i class="fas fa-heart"></i>
+                      <i class="fas fa-heart red-heart"></i>
                     </button>
                   <% end %>
                 <% else %>
@@ -51,7 +55,7 @@
                   <%= f.text_field :komment, placeholder: "Add a comment..." %>
                   <%= f.text_field :user_id, value: current_user.id, class:'d-none'%>
                   <%= f.text_field :post_id, value: post.id, class:'d-none'%>
-                  <%= f.submit 'Add' %>
+                  <%= f.submit 'Add', class:'d-none' %>
                 </p>
               <% end %>
 
@@ -59,5 +63,5 @@
           </section>
         <% end %>
       </div>
-<script type="text/javascript" src="/post-index.js"></script>
+
 <% end %>

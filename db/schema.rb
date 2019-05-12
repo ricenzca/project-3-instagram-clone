@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2019_05_10_063834) do
     t.string "media_type"
     t.string "public_id"
     t.string "caption"
+    t.string "method"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

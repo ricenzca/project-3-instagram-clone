@@ -21,13 +21,13 @@ class PostsController < ApplicationController
   end
 
   def search
-    if params[:query].blank?  
-      redirect_to(root_path, alert: "Empty field!") and return  
-    else  
-      @parameter = params[:query].downcase  
+    if params[:query].blank?
+      redirect_to(root_path, alert: "Empty field!") and return
+    else
+      @parameter = params[:query].downcase
       @results = User.where("lower(username) LIKE :query OR lower(name) LIKE :query" , query: "%#{@parameter}%").order(username: :asc).uniq
       render json: @results.to_json
-    end 
+    end
   end
 
   def show
@@ -46,7 +46,7 @@ class PostsController < ApplicationController
       puts preloaded
   	  params[:post][:public_id]=preloaded.public_id
       params[:post][:media_type]=preloaded.resource_type
-
+      p post_params
   	  Post.create(post_params)
 
   	  redirect_to root_path
@@ -70,7 +70,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:media_type, :user_id, :public_id, :caption)
+    params.require(:post).permit(:media_type, :user_id, :public_id, :caption, :method)
   end
 
 end

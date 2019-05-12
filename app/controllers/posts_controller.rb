@@ -17,8 +17,6 @@ class PostsController < ApplicationController
 
       puts "@posts"
       p @posts
-      @avatar = current_user.avatar
-
     end
   end
 

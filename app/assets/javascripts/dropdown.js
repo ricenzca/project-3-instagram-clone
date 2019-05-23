@@ -20,14 +20,10 @@ function searchIconEventHandler() {
 
 	searchBar.addEventListener("blur", () => {
 		searchBar.value = "";
-		setTimeout(clearSearchDropdown, 100);
+		setTimeout(clearSearchDropdown, 400);
 		searchIconContainer.style.visibility = "visible";
 	})
 	searchIconContainer.addEventListener("click", searchIconEventHandler);
-}
-
-function addSearchIconBack () {
-
 }
 
 function eventHandler () {
@@ -37,16 +33,6 @@ function eventHandler () {
 	console.log("query",query);
 	ajaxForDropdown(queryField.value);
 }
-	
-	// const searchContainer = document.querySelector(".input-group")
-	// let select = document.createElement("select");
-	// select.id = "select";
-	// let option = document.createElement("option");
-	// option.innerHTML = "option";
-	// option.value = "blah";
-	// select.appendChild(option);
-	// searchContainer.appendChild(select);
-	// console.log("appended!");
 
 function ajaxForDropdown(query) {
 	console.log("search!")	
@@ -55,8 +41,9 @@ function ajaxForDropdown(query) {
 		return res.json();
 	})
 	.then(json => {
-		// console.log(json);
+		console.log(json);
 		let resultContainer = document.getElementById("results-container");
+		console.log("resultContainer",resultContainer);
 		if (json.length) {
 			// console.log("json[0].username",json[0].username);
 			// console.log("json[0].name",json[0].name);

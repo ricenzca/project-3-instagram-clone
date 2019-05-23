@@ -16,6 +16,4 @@
 //= require rails-ujs
 //= require activestorage
 //= require cloudinary
-//= require dropdown
-//= require post-index
 //= require_tree .

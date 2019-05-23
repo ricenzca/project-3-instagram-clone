@@ -1,13 +1,16 @@
 window.onload = function () {
-	console.log("loaded!");
+	console.log("post-index js!");
 	loadDropDown();
 
 	document.querySelectorAll(".like-button").forEach(item => item.addEventListener("click", (refreshLikes)));
 }
 
 function refreshLikes () {
-	console.log("clicked!");
-	let likesText = this.parentElement.parentElement.children[0].innerText;
+	console.log("clicked!",this);
+	const likesTextContainer = this.parentNode.parentNode.parentNode.parentNode.children[1];
+	console.log("likesTextContainer",likesTextContainer);
+	let likesText = likesTextContainer.innerHTML;
+	console.log("likesText",likesTextContainer);
 	const arr = likesText.split(" ");
 
 	const clickedHeart = this.children[0].className;
@@ -25,7 +28,7 @@ function refreshLikes () {
 			arr[0] = `${parseInt(arr[0])-1}`;
 			arr[1] = "Likes";
 		}
-		this.parentElement.parentElement.children[0].innerText = arr.join(" ");
+		likesTextContainer.innerText = arr.join(" ");
 		// console.log("likesText",likesText);
 
 	} else {
@@ -37,7 +40,7 @@ function refreshLikes () {
 			arr[0] = `${parseInt(arr[0])+1}`;
 			arr[1] = "Likes";
 		}
-		this.parentElement.parentElement.children[0].innerText = arr.join(" ");
+		likesTextContainer.innerText = arr.join(" ");
 		// console.log("likesText",likesText);
 	}
 }

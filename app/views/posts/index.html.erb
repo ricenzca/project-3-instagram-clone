@@ -54,7 +54,7 @@
               <i class="far fa-bookmark"></i>
               </div>
 
-              <p class="words bold"><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+              <p class="words bold likes-text"><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
 
               <p><%= link_to post.user.username, user_path(post.user), class: "username" %>
                 <span class="normal"><%= post.caption %></span>

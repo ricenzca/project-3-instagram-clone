@@ -4,7 +4,6 @@
   </div>
   <%= link_to user.name, user, class: "link-deco" %>
   <% if current_user.admin? && !current_user?(user) %>
-    | <%= link_to "delete", user, class: "link-deco", method: :delete,
-                                  data: { confirm: "You sure?" } %>
+    | <%= link_to "delete", user, class: "link-deco", method: :delete, data: { confirm: "You sure?" } %>
   <% end %>
 </li>

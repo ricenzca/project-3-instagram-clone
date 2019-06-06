@@ -5,7 +5,7 @@
           <section class="post">
             <div class="user">
 
-              <div class="avatar">
+              <div class="avatar post-avatar">
       	      	<% if post.user.avatar != nil %>
 				        	<img src="https://res.cloudinary.com/dvaat1mxu/image/upload/v1557478671/<%= post.user.avatar[:public_id] %>.jpg">
 				      	<% else %>
@@ -55,7 +55,7 @@
               </div>
 
               <p class="words bold likes-text"><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-
+              
               <p><%= link_to post.user.username, user_path(post.user), class: "username" %>
                 <span class="normal"><%= post.caption %></span>
               </p>
@@ -95,5 +95,4 @@
           </section>
         <% end %>
       </div>
-
 <% end %>

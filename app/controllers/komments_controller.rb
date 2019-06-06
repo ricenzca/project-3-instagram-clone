@@ -1,7 +1,9 @@
 class KommentsController < ApplicationController
 
   def create
-    puts "post_params", post_params
+    puts "post_params"
+    p post_params
+
     Komment.create(post_params)
 
     redirect_to root_path

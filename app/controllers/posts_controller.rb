@@ -17,6 +17,7 @@ class PostsController < ApplicationController
 
       puts "@posts"
       p @posts
+      @java = "./post-index/post-index.js"
     end
   end
 
@@ -32,6 +33,9 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+
+    puts "current_user"
+    p current_user
   end
 
 #   def edit

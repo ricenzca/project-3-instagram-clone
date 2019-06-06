@@ -58,6 +58,7 @@ ion-icon {
 
 .normal {
   font-weight: 400;
+  font-size: 14px;
 }
 
 .grey {
@@ -184,7 +185,28 @@ ion-icon {
 }
 
 .post {
-  background: rgb(250,250,250);
+  background: rgb(255,255,255);
+}
+
+.post-avatar {
+  margin-left: 1rem;
+}
+
+.comment-user {
+  height: 60px;
+}
+
+.avatar{
+  width: 34px;
+  height: 34px;
+
+  img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #efefef;
+    border-radius: 50%;
+  }
 }
 
 .icon-container {
@@ -225,6 +247,7 @@ ion-icon {
 
 .quote {
   word-wrap: break-word;
+  max-width: 100%;
 }
 
 .timestamp {
@@ -242,7 +265,6 @@ ion-icon {
 #komment_komment {
   flex-grow: 1;
   border: none;
-  background: rgb(250,250,250);
 }
 
 .submit-comment-button {

@@ -1,5 +1,5 @@
 <div class="post-show row">
-  <div class="image-container col-md-8">
+  <div class="image-container col-md-8 d-flex align-items-center justify-content-center">
   	<% if @post.media_type == "image" %>
     	<img class="image" src= "https://res.cloudinary.com/dvaat1mxu/image/upload/v1557368429/<%= @post[:public_id] %>.jpg">
     <% end %>
@@ -8,9 +8,9 @@
     	<video src= "https://res.cloudinary.com/dvaat1mxu/video/upload/v1557370688/<%= @post[:public_id] %>.mp4" type="video/mp4" controls>
     <% end %>
   </div>
-  <div class="col-md-4">
-    <div class="user">
 
+  <div class="post-cont col-md-4 d-flex flex-column">
+    <div class="user">
       <div class="avatar">
         <% if @post.user.avatar != nil %>
           <img src="https://res.cloudinary.com/dvaat1mxu/image/upload/v1557478671/<%= @post.user.avatar[:public_id] %>.jpg">
@@ -22,50 +22,89 @@
       <%= link_to @post.user.username, user_path(@post.user), class: 'username' %>
     </div>
 
-    <div class="description">
-      <div class="user d-flex align-items-center">
-        <div class="avatar">
-          <% if @post.user.avatar != nil %>
-            <img src="https://res.cloudinary.com/dvaat1mxu/image/upload/v1557478671/<%= @post.user.avatar[:public_id] %>.jpg">
-          <% else %>
-            <%= image_tag 'default-avatar.png'%>
-          <% end %>
+    <div class="post-description d-flex flex-column flex-grow-1">
+
+      <div class="show-post-comments-container flex-grow-1 post-<%=@post.id%>">
+        
+        <div class="post-user">
+          <div class="avatar">
+            <% if @post.user.avatar != nil %>
+              <img src="https://res.cloudinary.com/dvaat1mxu/image/upload/v1557478671/<%= @post.user.avatar[:public_id] %>.jpg">
+            <% else %>
+              <%= image_tag 'default-avatar.png'%>
+            <% end %>
+          </div>
+            <%= link_to @post.user.username, user_path(@post.user), class: 'username' %> &nbsp;
+            <span class="quote normal"><%= @post.caption %></span>
         </div>
-        <div>
-            <%= link_to @post.user.username, user_path(@post.user), class: 'username words bold' %>
-            <span class="normal"><%= @post.caption %></span>
-        </div>
+
+        <% @post.komments.each do |f| %>
+          <div class="post-user">
+            <div class="avatar">
+              <% if f.user.avatar != nil %>
+                <img src="https://res.cloudinary.com/dvaat1mxu/image/upload/v1557478671/<%= f.user.avatar[:public_id] %>.jpg">
+              <% else %>
+                <%= image_tag 'default-avatar.png'%>
+              <% end %>
+            </div>
+              <%= link_to f.user.username, user_path(f.user), class: 'username' %> &nbsp;
+              <span class="quote normal"><%= f.komment %></span>
+          </div>
+        <% end %>
       </div>
 
-      <% @post.komments.each do |f| %>
-        <p class="quote bold"><%= link_to f.user.username, user_path(f.user), class: "username" %>&nbsp;<span class="normal"><%= f.komment %><span></p>
+      <div class="icon-container d-flex">
+        <div>
+        <% pre_like = @post.likes.find { |like| like.user_id == current_user.id} %>
+          <% if pre_like %>
+            <%= form_with url: post_like_path(@post, pre_like), class: "like-form", method: :delete, remote: true do |form| %>
+              <button class="show-like-button" style="border: none; background: none" type="submit" value="submit">
+                <i class="fas fa-heart red-heart"></i>
+              </button>
+            <% end %>
+          <% else %>
+            <%= form_with url: post_likes_path(@post), class: "like-form", remote: true do |form| %>
+              <button class="show-like-button" style="border: none; background: none" type="submit" value="submit">
+                <i class="far fa-heart"></i>
+              </button>
+            <% end %>
+          <% end %>
+
+      <a href=/posts/<%=@post.id%>><i class="far fa-comment"></i></a>
+      <i class="far fa-paper-plane"></i>
+      </div>
+      <i class="far fa-bookmark"></i>
+      </div>
+
+      <div class="bold likes-text"><%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%></div>
+      
+
+      <div class="timestamp">
+        <p><% 
+        t=Time.now.utc
+        timestamp = @post.created_at
+        diff=(t-timestamp)/3600
+        if diff<1 %>
+          <p class="timestamp"><%= (diff*60).round %> MINUTES AGO
+          </p>
+        <% elsif diff>=1 && diff<24 %>
+          <p class="timestamp"><%= diff.round %> HOURS AGO
+          </p>
+        <% else
+            diff = diff/24 %>
+          <p class="timestamp"><%= diff.round %> DAYS AGO
+          </p>
+        <% end %>
+      </p>
+      </div>
+
+      <%= form_with scope: :komment, class: "show-comments-input-container d-flex grey", url: komments_path do |f| %>
+          <%= f.text_field :komment, id: "komment_show_komment", placeholder: "Add a comment..." %>
+          <%= f.text_field :user_id, value: current_user.id, class:'d-none', placeholder: current_user.username %>
+          <%= f.text_field :post_id, value: @post.id, class:'d-none'%>
+          <%= f.text_field "avatar", value: current_user.avatar[:public_id], class:'d-none'%>
+          <input disabled="" type="submit" value="Post" class="show-submit-comment-button bold" >
       <% end %>
-      <%= form_for Komment.new do |f| %>
-        <p>
-          <%= f.text_field :komment, placeholder: "Add a comment..." %>
-          <%= f.text_field :user_id, value: current_user.id, class:'d-none'%>
-          <%= f.text_field :@post_id, value: @post.id, class:'d-none'%>
-          <%= f.submit 'Add', class:'d-none' %>
-        </p>
-      <% end %>
-
-
-    	<p><%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-			<% pre_like = @post.likes.find { |like| like.user_id == current_user.id} %>
-
-			<% if pre_like %>
-				<%= form_with url: post_like_path(@post, pre_like), method: :delete, local: true do |form| %>
-					<button style="border: none; background: none" type="submit" value="submit">
-						<%= image_tag("after-like.png", size: "25", alt:"unlike icon", class: "heart") %>
-					</button>
-				<% end %>
-			<% else %>
-				<%= form_with url: post_likes_path(@post), local: true do |form| %>
-					<button style="border: none; background: none" type="submit" value="submit">
-						<%= image_tag("before-like.png", size: "25", alt: "like icon", class: "heart") %>
-					</button>
-				<% end %>
-			<% end %>
 
     </div>
   </div>

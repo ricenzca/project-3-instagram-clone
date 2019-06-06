@@ -1,13 +1,28 @@
 <li>
-	<div class="avatar">
-  	<% if user.avatar != nil %>
-        	<img src="https://res.cloudinary.com/dvaat1mxu/image/upload/v1557478671/<%=user.avatar[:public_id] %>.jpg">
-      	<% else %>
-      		<%= image_tag 'default-avatar.png'%>
-      	<% end %>
+  <div class="d-flex justify-content-between pr-1 align-items-center">
+  <div class="post-user">
+  	<div class="avatar">
+    	<% if user.avatar != nil %>
+          	<img src="https://res.cloudinary.com/dvaat1mxu/image/upload/v1557478671/<%=user.avatar[:public_id] %>.jpg">
+        	<% else %>
+        		<%= image_tag 'default-avatar.png'%>
+        	<% end %>
+    </div>
+    <%= link_to user.name, user, class: "username link-deco" %>
   </div>
-  <%= link_to user.name, user, class: "link-deco" %>
-  <% if current_user.admin? && !current_user?(user) %>
-    | <%= link_to "delete", user, class: "link-deco", method: :delete, data: { confirm: "You sure?" } %>
+  <div id="follow_form">
+  <% if current_user.following?(user) %>
+    <%= form_with model: current_user.active_relationships.find_by(followed_id: user.id), html: { method: :delete }, local:true do |f| %>
+      <%= f.text_field :page, value: "show_all", class:'d-none'%>
+      <%= f.submit "Unfollow", class: "btn btn-outline-dark unfollow-btn", id: "follow" %>
+    <% end %>
+  <% else %>
+    <%= form_with model: current_user.active_relationships.build, local:true do |f| %>
+      <div><%= hidden_field_tag :followed_id, user.id %></div>
+      <%= f.text_field :page, value: "show_all", class:'d-none'%>
+      <%= f.submit "Follow", class: "btn btn-primary follow-btn", id: "follow" %>
+    <% end %>
   <% end %>
+  </div>
+  </div>
 </li>

@@ -27,7 +27,13 @@ class PostsController < ApplicationController
     else
       @parameter = params[:query].downcase
       @results = User.where("lower(username) LIKE :query OR lower(name) LIKE :query" , query: "%#{@parameter}%").order(username: :asc).uniq
-      render json: @results.to_json
+      puts "@results"
+      p @results
+      @avatar = User.select("users.*,avatars.*").joins(:avatar).where("lower(username) LIKE :query OR lower(name) LIKE :query" , query: "%#{@parameter}%").order(username: :asc).uniq
+      puts "@avatar"
+      p @avatar
+      object = {results: @results, avatar: @avatar}
+      render json: object.to_json
     end
   end
 

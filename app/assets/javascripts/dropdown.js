@@ -41,24 +41,52 @@ function ajaxForDropdown(query) {
 		return res.json();
 	})
 	.then(json => {
-		console.log(json);
+		console.log("json",json);
 		let resultContainer = document.getElementById("results-container");
 		console.log("resultContainer",resultContainer);
-		if (json.length) {
+		if (json.results.length) {
 			// console.log("json[0].username",json[0].username);
 			// console.log("json[0].name",json[0].name);
 			
-			for (i=0; i<json.length; i++) {
+			for (i=0; i<json.results.length; i++) {
 				console.log("i",i)
 				let singleResultLink = document.createElement("a");
 				singleResultLink.className = "result-link";
-				singleResultLink.href = `/users/${json[i].id}`;
+				singleResultLink.href = `/users/${json.results[i].id}`;
 				let usernameContainer = document.createElement("div");
 				let nameContainer = document.createElement("div");
-				usernameContainer.innerHTML = capitalize(json[i].username);
-				nameContainer.innerHTML = json[i].name;
-				singleResultLink.appendChild(usernameContainer);
-				singleResultLink.appendChild(nameContainer);
+				usernameContainer.innerHTML = capitalize(json.results[i].username);
+				nameContainer.innerHTML = json.results[i].name;
+
+				const avatarContainer = document.createElement("div");
+				avatarContainer.className = "avatar";
+
+				const avatarImage = document.createElement("img");
+
+				console.log("json avatar", json.avatar);
+
+				const avatarPresent = json.avatar.filter(item => {
+					return item["user_id"] === json.results[i].id;
+				})
+
+				if (avatarPresent.length>0) {
+					console.log("avatarPresent",avatarPresent);
+					avatarImage.src = `https://res.cloudinary.com/dvaat1mxu/image/upload/v1557478671/${avatarPresent[0]["public_id"]}.jpg`;
+				} else {
+					avatarImage.src = `/assets/default-avatar-5247b57a5a9a7f8497981e8500454f5aa614940fce5b4fc321e245c043125319.png`;
+				}
+
+				avatarContainer.appendChild(avatarImage);
+				singleResultLink.appendChild(avatarContainer);
+
+				const namesContainer = document.createElement("div");
+				namesContainer.className = "names-container";
+
+				namesContainer.appendChild(usernameContainer);
+				namesContainer.appendChild(nameContainer);
+
+				singleResultLink.appendChild(namesContainer);
+
 				resultContainer.appendChild(singleResultLink);
 			}
 		} else {

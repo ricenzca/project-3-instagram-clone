@@ -2,16 +2,14 @@
 <div class="stats">
 
   <a class="link-deco" href="<%= following_user_path(@user) %>">
-    <strong id="following" class="stat">
+    <span id="following" class="bold stat">
       <%= @user.following.count %>
-    </strong>
-    following
+    </span> following
   </a>
 
   <a class="link-deco" href="<%= followers_user_path(@user) %>">
-    <strong id="followers" class="stat">
+    <span id="followers" class="bold stat">
       <%= @user.followers.count %>
-    </strong>
-    followers
+    </span> followers
   </a>
 </div>

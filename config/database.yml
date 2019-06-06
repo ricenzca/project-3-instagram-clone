@@ -25,7 +25,7 @@ development:
   <<: *default
   database: insta_development
 
-  user: postgres
+  username: postgres
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -61,7 +61,7 @@ test:
   <<: *default
   database: insta_test
 
-  user: postgres
+  username: postgres
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -85,7 +85,5 @@ test:
 production:
   <<: *default
   database: insta_production
-  username: insta
+  username: postgres
   password: <%= ENV['INSTA_DATABASE_PASSWORD'] %>
-
-  user: postgres

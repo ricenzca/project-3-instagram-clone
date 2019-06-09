@@ -44,7 +44,7 @@ function ajaxForDropdown(query) {
 		if (json.results.length) {
 			// console.log("json[0].username",json[0].username);
 			// console.log("json[0].name",json[0].name);
-			
+			clearSearchDropdown();
 			for (i=0; i<json.results.length; i++) {
 				console.log("i",i)
 				let singleResultLink = document.createElement("a");
@@ -83,7 +83,6 @@ function ajaxForDropdown(query) {
 				namesContainer.appendChild(nameContainer);
 
 				singleResultLink.appendChild(namesContainer);
-				clearSearchDropdown();
 				resultContainer.appendChild(singleResultLink);
 			}
 		} else {

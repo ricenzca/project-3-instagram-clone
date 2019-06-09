@@ -1,12 +1,10 @@
 function loadDropDown () {
 	console.log("dropdown!");
 	document.getElementById("search").addEventListener("keyup", e => {
+				clearSearchDropdown();
         let timeout;
         if (timeout) clearTimeout(timeout);
-        timeout = setTimeout(eventHandler, 1000);
-        if (e.keyCode == 8){
-            clearSearchDropdown();
-        }
+        timeout = setTimeout(eventHandler, 500);
     });
     document.querySelector(".search-icon-container").addEventListener("click", searchIconEventHandler);
     document.getElementById("search").value = "";
@@ -27,7 +25,7 @@ function searchIconEventHandler() {
 }
 
 function eventHandler () {
-	clearSearchDropdown()
+	clearSearchDropdown();
 	let queryField = document.getElementById("search");
 	let query = queryField.value;
 	console.log("query",query);
@@ -99,6 +97,7 @@ function ajaxForDropdown(query) {
 }
 
 function clearSearchDropdown(){
+	console.log("clear dropdown");
 	let resultContainer = document.getElementById("results-container");
     while (resultContainer.firstChild) {
         resultContainer.removeChild(resultContainer.firstChild);

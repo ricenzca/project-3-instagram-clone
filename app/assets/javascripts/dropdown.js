@@ -25,7 +25,6 @@ function searchIconEventHandler() {
 }
 
 function eventHandler () {
-	clearSearchDropdown();
 	let queryField = document.getElementById("search");
 	let query = queryField.value;
 	console.log("query",query);
@@ -84,7 +83,7 @@ function ajaxForDropdown(query) {
 				namesContainer.appendChild(nameContainer);
 
 				singleResultLink.appendChild(namesContainer);
-
+				clearSearchDropdown();
 				resultContainer.appendChild(singleResultLink);
 			}
 		} else {

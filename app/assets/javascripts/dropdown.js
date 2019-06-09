@@ -89,6 +89,7 @@ function ajaxForDropdown(query) {
 		} else {
 			let singleResultContainer = document.createElement("div");
 			singleResultContainer.innerHTML = "No results found";
+			clearSearchDropdown();
 			resultContainer.appendChild(singleResultContainer);
 		}
 

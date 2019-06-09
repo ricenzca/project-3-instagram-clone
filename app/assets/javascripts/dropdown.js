@@ -3,7 +3,7 @@ function loadDropDown () {
 	document.getElementById("search").addEventListener("keyup", e => {
         let timeout;
         if (timeout) clearTimeout(timeout);
-        timeout = setTimeout(eventHandler, 600);
+        timeout = setTimeout(eventHandler, 1000);
         if (e.keyCode == 8){
             clearSearchDropdown();
         }

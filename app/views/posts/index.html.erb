@@ -55,7 +55,7 @@
               </div>
 
               <p class="words bold likes-text"><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-              
+
               <p><%= link_to post.user.username, user_path(post.user), class: "username" %>
                 <span class="normal"><%= post.caption %></span>
               </p>
@@ -65,7 +65,7 @@
                 <% end %>
               </div>
               <div class="timestamp">
-                <p><% 
+                <p><%
                 t=Time.now.utc
                 timestamp = post.created_at
                 diff=(t-timestamp)/3600
@@ -95,4 +95,10 @@
           </section>
         <% end %>
       </div>
+
+      <% else %>
+      <h1>Please login to use the app</h1>
+      <a href= <%= new_user_session_path%>>
+      	<h3>Log in here</h3>
+      </a>
 <% end %>

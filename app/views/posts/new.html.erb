@@ -1,29 +1,55 @@
 <%= cloudinary_js_config %>
 
-<h1> New post </h1>
+<h1 class="new-post-heading"> Create a new post </h1>
 
-<div id="direct_upload">
-
-<%= form_for Post.new do |f| %>
-
-	<%= cl_upload_tag(:media_id) %>
-
-	<br><br>
-
-  <p>
-    <%= f.label :caption %>
-    <%= f.text_field :caption %>
-  </p>
+	<div class="image-wrapper">
+			<div class="upload-options">
+				<label>
+				<%= form_for Post.new do |f| %>
+				<%= cl_upload_tag(:media_id) %>
+				</label>
+			</div>
+	</div>
 
 	<br>
 
-	<span class="status"></span>
+    <%= f.label :description %>
+    <%= f.text_field :caption, class: 'form-control' %>
+
+  <br>
+
+  <div class="upload-progress">
+    <div class="progress-bar progress-bar-striped progress-bar-info active" role="progressbar">
+      <span class="status"></span>
+    </div>
+  </div>
+
 	<div class="holder cloudfilter d-none">
-		<div id= "filter1"></div>
-		<div id= "filter2"></div>
-		<div id= "filter3"></div>
-		<div id= "filter4"></div>
-		<div id= "filter5"></div>
+		<div class="carousel-inner w-100" role="listbox">
+			<div class="carousel-item row no-gutters active">
+
+				<div class="col-3-3 float-left">
+					<div class="img-fluid" id= "filter1"></div>
+				</div>
+
+				<div class="col-3-3 float-left">
+					<div class="img-fluid" id= "filter2"></div>
+				</div>
+
+				<div class="col-3-3 float-left">
+					<div class="img-fluid" id= "filter3"></div>
+				</div>
+
+				<div class="col-3-3 float-left">
+					<div class="img-fluid" id= "filter4"></div>
+				</div>
+
+				<div class="col-3-3 float-left">
+					<div class="img-fluid" id= "filter5"></div>
+				</div>
+
+			</div>
+		</div>
 		<%= f.select :method, ['none', 'audrey', 'eucalyptus', 'fes', 'peacock']%>
 	</div>
 
@@ -31,11 +57,7 @@
 		<%= f.text_field :user_id, value: current_user.id, class:'d-none'%>
 	</div>
 
-	<br>
+		<%= link_to "Cancel", posts_path, class: "btn-cancel" %>
 
-		<%= link_to "Cancel", posts_path, class: "btn btn-primary" %>
-
-		<%= f.submit 'Create Post', class: 'btn btn-success d-none', id:'submitButton' %>
+		<%= f.submit 'Create Post', class: 'btn-create-post d-none', id:'submitButton' %>
 <% end %>
-
-</div>

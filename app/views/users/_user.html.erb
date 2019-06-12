@@ -11,6 +11,7 @@
     <%= link_to user.name, user, class: "username link-deco" %>
   </div>
   <div id="follow_form">
+  <% if user.id != current_user.id %>
   <% if current_user.following?(user) %>
     <%= form_with model: current_user.active_relationships.find_by(followed_id: user.id), html: { method: :delete }, local:true do |f| %>
       <%= f.text_field :page, value: "show_all", class:'d-none'%>
@@ -22,6 +23,7 @@
       <%= f.text_field :page, value: "show_all", class:'d-none'%>
       <%= f.submit "Follow", class: "btn btn-primary follow-btn", id: "follow" %>
     <% end %>
+  <% end %>
   <% end %>
   </div>
   </div>
